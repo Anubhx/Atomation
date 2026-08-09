@@ -1,5 +1,21 @@
+# Virtualenv
 .venv/
 venv/
 __pycache__/
 *.pyc
-.DS_Store
+
+# Secrets & Config
+.streamlit/secrets.toml
+.env
+*.pem
+*.key
+
+# Pytest & IDE
+.pytest_cache/
+.vscode/
+.idea/
+
+# Vector Index & Runtime Caches (built via scripts/build_index.py)
+data/vector_index/
+data/cache/
+data/user_pins.json
