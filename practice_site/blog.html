@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playwright Practice Site - Blog Listing</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Landmark & Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo" data-testid="brand-logo-link">
+        <img src="https://picsum.photos/seed/logo/100/100" alt="Playwright Practice Logo">
+        <span>Playwright Playground</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link" data-testid="nav-home">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link" data-testid="nav-about">About</a></li>
+          
+          <li class="nav-item dropdown">
+            <a href="products.html" class="nav-link" id="products-dropdown-link-blog" data-testid="nav-products">
+              Products &#9662;
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="products-dropdown-link-blog">
+              <li class="dropdown-item"><a href="products.html" class="dropdown-link">All Products</a></li>
+              <li class="dropdown-item"><a href="products/product-1.html" class="dropdown-link">Product 1</a></li>
+              <li class="dropdown-item"><a href="products/product-2.html" class="dropdown-link">Product 2</a></li>
+              <li class="dropdown-item"><a href="products/product-3.html" class="dropdown-link">Product 3</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="gallery.html" class="nav-link" data-testid="nav-gallery">Gallery</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link active" data-testid="nav-blog">Blog</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link" data-testid="nav-contact">Contact</a></li>
+          <li class="nav-item"><a href="login.html" class="nav-link btn btn-secondary" data-testid="nav-login">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Layout with Main & Aside Landmarks -->
+  <div style="max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+    <!-- Main Landmark -->
+    <main id="main-content">
+      <h1>QA Automation &amp; Web Testing Articles</h1>
+      <p style="font-size: 1.1rem; color: var(--secondary-color); margin-bottom: 2rem;">
+        Articles on Playwright locators, async assertions, and testing strategies.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;" data-testid="blog-posts-list">
+        <!-- Blog Post Card 1 -->
+        <article class="card" style="padding: 1.5rem;" data-testid="blog-post-card-1">
+          <span style="color: var(--primary-color); font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Tutorial &bull; August 2026</span>
+          <h2 style="margin: 0.5rem 0;"><a href="blog/post-1.html" style="color: var(--text-color); text-decoration: none;" data-testid="post-1-link">Mastering Playwright Auto-Waiting and Web-First Assertions</a></h2>
+          <p style="color: var(--muted-text); margin-bottom: 1rem;">
+            Learn how Playwright automatically waits for elements to be visible, enabled, and stable before performing actions.
+          </p>
+          <a href="blog/post-1.html" class="btn btn-primary" style="width: fit-content;" data-testid="read-post-1-btn">Read Article &#8594;</a>
+        </article>
+
+        <!-- Blog Post Card 2 -->
+        <article class="card" style="padding: 1.5rem;" data-testid="blog-post-card-2">
+          <span style="color: var(--error-color); font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Console Error Demo &bull; August 2026</span>
+          <h2 style="margin: 0.5rem 0;"><a href="blog/post-2.html" style="color: var(--text-color); text-decoration: none;" data-testid="post-2-link">Handling Browser Console Error Listener Assertions</a></h2>
+          <p style="color: var(--muted-text); margin-bottom: 1rem;">
+            This specific article page intentionally triggers a runtime JavaScript <code>console.error()</code> on load to test Playwright console event listeners.
+          </p>
+          <a href="blog/post-2.html" class="btn btn-primary" style="width: fit-content;" data-testid="read-post-2-btn">Read Article &#8594;</a>
+        </article>
+
+        <!-- Intentionally Broken Link Demo Card -->
+        <article class="card" style="padding: 1.5rem; border: 2px dashed var(--warning-color); background: #fffbeb;">
+          <span style="color: var(--warning-color); font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Broken Link Test Demo</span>
+          <h2 style="margin: 0.5rem 0; color: #92400e;">404 Broken Link Practice</h2>
+          <p style="color: var(--muted-text); margin-bottom: 1rem;">
+            The link below points to a non-existent URL (<code>non-existent-page.html</code>) to practice catching broken links and testing your server's <code>404.html</code> response.
+          </p>
+          <a href="non-existent-page.html" class="btn btn-danger" style="width: fit-content;" data-testid="broken-link-demo">
+            Test Broken Link (Goes to 404)
+          </a>
+        </article>
+      </div>
+    </main>
+
+    <!-- Sidebar Landmark -->
+    <aside aria-label="Blog Categories and Links" style="background: white; padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border-color); height: fit-content;">
+      <h2>Blog Sidebar</h2>
+      <p style="color: var(--muted-text); margin-bottom: 1rem;">Popular Categories:</p>
+      
+      <ul style="list-style: none; padding: 0;">
+        <li style="padding: 0.5rem 0; border-bottom: 1px solid #f1f5f9;"><a href="blog.html" style="text-decoration: none; color: var(--primary-color);">Automated UI Testing (5)</a></li>
+        <li style="padding: 0.5rem 0; border-bottom: 1px solid #f1f5f9;"><a href="blog.html" style="text-decoration: none; color: var(--primary-color);">Playwright vs Selenium (3)</a></li>
+        <li style="padding: 0.5rem 0; border-bottom: 1px solid #f1f5f9;"><a href="blog.html" style="text-decoration: none; color: var(--primary-color);">Accessibility Testing (4)</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Footer Landmark -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Playwright Playground</h4>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Blog Listing Test Environment.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:support@playwrightpractice.test">support@playwrightpractice.test</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 Playwright Web Testing Practice Ground.
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

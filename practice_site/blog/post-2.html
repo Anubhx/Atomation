@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post - Browser Console Error Listener Assertions</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Landmark & Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="../index.html" class="brand-logo" data-testid="brand-logo-link">
+        <img src="https://picsum.photos/seed/logo/100/100" alt="Playwright Practice Logo">
+        <span>Playwright Playground</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="../index.html" class="nav-link" data-testid="nav-home">Home</a></li>
+          <li class="nav-item"><a href="../about.html" class="nav-link" data-testid="nav-about">About</a></li>
+          
+          <li class="nav-item dropdown">
+            <a href="../products.html" class="nav-link" id="products-dropdown-link-post2" data-testid="nav-products">
+              Products &#9662;
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="products-dropdown-link-post2">
+              <li class="dropdown-item"><a href="../products.html" class="dropdown-link">All Products</a></li>
+              <li class="dropdown-item"><a href="../products/product-1.html" class="dropdown-link">Product 1</a></li>
+              <li class="dropdown-item"><a href="../products/product-2.html" class="dropdown-link">Product 2</a></li>
+              <li class="dropdown-item"><a href="../products/product-3.html" class="dropdown-link">Product 3</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="../gallery.html" class="nav-link" data-testid="nav-gallery">Gallery</a></li>
+          <li class="nav-item"><a href="../blog.html" class="nav-link active" data-testid="nav-blog">Blog</a></li>
+          <li class="nav-item"><a href="../contact.html" class="nav-link" data-testid="nav-contact">Contact</a></li>
+          <li class="nav-item"><a href="../login.html" class="nav-link btn btn-secondary" data-testid="nav-login">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Article Landmark -->
+  <main id="main-content" style="max-width: 800px; margin: 0 auto; padding: 2rem 1rem;">
+    <a href="../blog.html" class="btn btn-secondary" style="margin-bottom: 1.5rem;" data-testid="back-to-blog-btn">
+      &#8592; Back to Blog Listing
+    </a>
+
+    <article>
+      <h1 data-testid="post-title">Handling Browser Console Error Listener Assertions</h1>
+      <p style="color: var(--muted-text); margin-bottom: 1.5rem;">Published on August 8, 2026 by QA Practice Team</p>
+
+      <div class="alert alert-danger" style="margin-bottom: 1.5rem;">
+        <strong>Console Error Assertion Demo:</strong> This page automatically fires a real <code>console.error()</code> when loaded in the browser. Use Playwright's <code>page.on('console', msg => ...)` to catch it.
+      </div>
+
+      <img src="https://picsum.photos/seed/post2img/800/400" alt="Console Error Event Listener Architecture" style="width: 100%; border-radius: var(--radius); margin-bottom: 1.5rem;">
+
+      <div style="font-size: 1.05rem; line-height: 1.8;">
+        <p style="margin-bottom: 1rem;">
+          Playwright allows test suites to listen for browser console messages during test execution using the <code>console</code> event listener on the Page object.
+        </p>
+
+        <pre style="background: #0f172a; color: #38bdf8; padding: 1rem; border-radius: var(--radius); overflow-x: auto; margin-bottom: 1.5rem;">
+// Playwright Python Example: Catching console.error
+errors = []
+page.on("console", lambda msg: errors.append(msg.text) if msg.type == "error" else None)
+page.goto(url)
+assert "Simulated runtime error" in errors[0]
+        </pre>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer Landmark -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Playwright Playground</h4>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Blog Post 2 Detail Page.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:support@playwrightpractice.test">support@playwrightpractice.test</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 Playwright Web Testing Practice Ground.
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <!-- Isolated Inline Script Triggering Console.error() for Testing -->
+  <script>
+    console.error("Simulated runtime error on post-2.html for testing browser console error assertions");
+  </script>
+</body>
+</html>

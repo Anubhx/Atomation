@@ -1,0 +1,5 @@
+Playwright Testing Practice Ground - Sample Download File
+===================================================
+This file is used for testing file download links in Playwright!
+File: sample-download.txt
+Timestamp: 2026

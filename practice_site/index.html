@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playwright Practice Site - Home</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Landmark & Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo" data-testid="brand-logo-link">
+        <img src="https://picsum.photos/seed/logo/100/100" alt="Playwright Practice Logo">
+        <span>Playwright Playground</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link active" data-testid="nav-home">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link" data-testid="nav-about">About</a></li>
+          
+          <!-- Dropdown Submenu for Products -->
+          <li class="nav-item dropdown">
+            <a href="products.html" class="nav-link" id="products-dropdown-link" data-testid="nav-products">
+              Products &#9662;
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="products-dropdown-link">
+              <li class="dropdown-item"><a href="products.html" class="dropdown-link">All Products</a></li>
+              <li class="dropdown-item"><a href="products/product-1.html" class="dropdown-link">Product 1</a></li>
+              <li class="dropdown-item"><a href="products/product-2.html" class="dropdown-link">Product 2</a></li>
+              <li class="dropdown-item"><a href="products/product-3.html" class="dropdown-link">Product 3</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="gallery.html" class="nav-link" data-testid="nav-gallery">Gallery</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link" data-testid="nav-blog">Blog</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link" data-testid="nav-contact">Contact</a></li>
+          <li class="nav-item"><a href="login.html" class="nav-link btn btn-secondary" data-testid="nav-login">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookie Consent Banner" data-testid="cookie-banner">
+    <div>
+      <strong>Cookie Notice:</strong> We use fake cookies to improve your web testing practice experience!
+    </div>
+    <div style="display: flex; gap: 0.5rem;">
+      <button id="accept-cookies-btn" class="btn btn-primary" data-testid="accept-cookies-btn">Accept Cookies</button>
+      <button id="dismiss-cookies-btn" class="btn btn-secondary" data-testid="dismiss-cookies-btn">Dismiss</button>
+    </div>
+  </div>
+
+  <!-- Page Loading Spinner (~1s Delay Demonstration) -->
+  <div id="page-spinner" class="spinner" role="status" aria-label="Loading Page Content" data-testid="page-loading-spinner"></div>
+
+  <!-- Main Content Landmark -->
+  <main id="main-content">
+    <div id="main-content-wrapper">
+      <section class="hero-section" style="text-align: center; padding: 2rem 0; background: #e0f2fe; border-radius: var(--radius); margin-bottom: 2rem;">
+      <h1>Playwright E2E Testing Practice Ground</h1>
+      <p style="font-size: 1.1rem; color: var(--secondary-color); margin: 1rem 0;">
+        A complete multi-page static playground built specifically for exercising Playwright locators, waits, assertions, auth, forms, tables, and accessibility testing.
+      </p>
+      
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="#interactive-section" class="btn btn-primary">Scroll to Interactive Elements</a>
+        <a href="downloads/sample-download.txt" download="sample.txt" class="btn btn-secondary" data-testid="download-link">
+          Download Sample File
+        </a>
+        <button class="btn btn-secondary" disabled data-testid="disabled-hero-btn">Disabled Hero Button</button>
+        <a href="#" class="disabled-link" aria-disabled="true" tabindex="-1">Disabled Link</a>
+      </div>
+    </section>
+
+    <!-- Repeating Text Links Demonstration (For Strict-Mode Violation & .filter() Practice) -->
+    <section style="margin-bottom: 2rem; padding: 1rem; background: #f1f5f9; border-radius: var(--radius);">
+      <h2>Strict Mode Practice: Repeating Link Text</h2>
+      <p>The links below share the exact same visible text <code>Read More</code> to practice locator filtering, <code>.first()</code>, <code>.nth()</code>, and handling Playwright strict-mode errors.</p>
+      <div style="display: flex; gap: 1.5rem; margin-top: 1rem;">
+        <a href="blog/post-1.html" class="nav-link" data-testid="repeating-link-1">Read More</a>
+        <a href="blog/post-2.html" class="nav-link" data-testid="repeating-link-2">Read More</a>
+        <a href="products/product-1.html" class="nav-link" data-testid="repeating-link-3">Read More</a>
+      </div>
+    </section>
+
+    <!-- Dynamic & Async UI Elements Section -->
+    <section id="interactive-section" style="margin-bottom: 3rem;">
+      <h2>Dynamic & Async UI Elements</h2>
+      <p>Use these components to practice Playwright auto-waiting, visibility assertions, modals, tabs, accordions, and dialogs.</p>
+
+      <div class="grid">
+        <!-- Card 1: Toggle Hidden Div -->
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Toggle Visibility</h3>
+            <p class="card-text">Click the button below to toggle a hidden block element.</p>
+            <button id="toggle-div-btn" class="btn btn-primary" data-testid="toggle-visibility-btn">Toggle Hidden Div</button>
+            <div id="hidden-div-target" class="hidden alert alert-warning" style="margin-top: 1rem;" data-testid="hidden-div-target">
+              Peekaboo! I am now visible in the DOM.
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Async Load More List -->
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Async Item Loader</h3>
+            <p class="card-text">Loads 3 new items after a ~1.5s simulated network delay.</p>
+            <button id="load-more-btn" class="btn btn-primary" data-testid="load-more-btn">Load More Items</button>
+            <ul id="dynamic-item-list" style="margin-top: 1rem; padding-left: 1.2rem;" data-testid="dynamic-item-list">
+              <li>Item #1 - Initial static item</li>
+              <li>Item #2 - Initial static item</li>
+              <li>Item #3 - Initial static item</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 3: Toast Notification -->
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Toast Alert</h3>
+            <p class="card-text">Triggers an auto-dismissing toast notification (disappears after 3s).</p>
+            <button id="trigger-toast-btn" class="btn btn-primary" data-testid="trigger-toast-btn">Show Toast Alert</button>
+          </div>
+        </div>
+
+        <!-- Card 4: Custom Focus-Trapped Modal -->
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Custom Modal Dialog</h3>
+            <p class="card-text">Opens a custom modal with focus trap and overlay backdrop.</p>
+            <button id="open-modal-btn" class="btn btn-primary" data-testid="open-modal-btn">Open Custom Modal</button>
+          </div>
+        </div>
+
+        <!-- Card 5: Native <dialog> -->
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Native &lt;dialog&gt; Element</h3>
+            <p class="card-text">Opens a native HTML5 <code>&lt;dialog&gt;</code> via <code>showModal()</code>.</p>
+            <button id="open-native-dialog-btn" class="btn btn-primary" data-testid="open-native-dialog-btn">Open Native Dialog</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Custom Modal Overlay Markup -->
+    <div id="custom-modal-overlay" class="modal-overlay hidden" aria-hidden="true" data-testid="modal-overlay">
+      <div class="modal-content" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+        <button id="close-modal-btn" class="modal-close" aria-label="Close Modal" data-testid="modal-close-btn">&times;</button>
+        <h2 id="modal-title">Custom Practice Modal</h2>
+        <p style="margin: 1rem 0;">This is a focus-trapped custom modal window for testing dialog assertions, overlay interactions, and keyboard focus state.</p>
+        <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+          <button onclick="document.getElementById('close-modal-btn').click()" class="btn btn-secondary">Cancel</button>
+          <button onclick="alert('Confirmed!'); document.getElementById('close-modal-btn').click();" class="btn btn-primary">Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Native <dialog> Markup -->
+    <dialog id="native-dialog" data-testid="native-dialog">
+      <h2>Native HTML5 Dialog</h2>
+      <p style="margin: 1rem 0;">Opened using the browser native <code>dialog.showModal()</code> method.</p>
+      <div style="display: flex; justify-content: flex-end;">
+        <button id="close-native-dialog-btn" class="btn btn-primary" data-testid="close-native-dialog-btn">Close Dialog</button>
+      </div>
+    </dialog>
+
+    <!-- Toast Notification Target Container -->
+    <div id="toast-container" class="toast-container" data-testid="toast-container"></div>
+
+    <!-- Tabs Component Section -->
+    <section style="margin-bottom: 3rem;">
+      <h2>Tabs Component</h2>
+      <div class="tabs" data-testid="tabs-component">
+        <ul class="tab-list" role="tablist">
+          <li role="presentation"><button id="tab-btn-1" class="tab-button active" role="tab" aria-selected="true" aria-controls="tab-panel-1" data-testid="tab-1-btn">Overview</button></li>
+          <li role="presentation"><button id="tab-btn-2" class="tab-button" role="tab" aria-selected="false" aria-controls="tab-panel-2" data-testid="tab-2-btn">Features</button></li>
+          <li role="presentation"><button id="tab-btn-3" class="tab-button" role="tab" aria-selected="false" aria-controls="tab-panel-3" data-testid="tab-3-btn">Specifications</button></li>
+        </ul>
+        <div id="tab-panel-1" class="tab-panel active" role="tabpanel" aria-labelledby="tab-btn-1" data-testid="tab-panel-1">
+          <h3>Overview Panel Content</h3>
+          <p>Only one tab panel is visible at a time. Practice testing tab selection and ARIA states.</p>
+        </div>
+        <div id="tab-panel-2" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-2" data-testid="tab-panel-2">
+          <h3>Features Panel Content</h3>
+          <p>Playwright supports locator queries using <code>getByRole('tab')</code> and <code>getByRole('tabpanel')</code>.</p>
+        </div>
+        <div id="tab-panel-3" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-3" data-testid="tab-panel-3">
+          <h3>Specifications Panel Content</h3>
+          <p>Fully compliant with WCAG WAI-ARIA tab pattern guidelines.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Accordion Component Section -->
+    <section style="margin-bottom: 3rem;">
+      <h2>Accordion Component</h2>
+      <div class="accordion" data-testid="accordion-component">
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false" data-testid="accordion-header-1">
+            Section 1: What is Playwright? <span>&#9660;</span>
+          </button>
+          <div class="accordion-body">
+            <p>Playwright is a modern framework for Web Testing and Automation by Microsoft.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false" data-testid="accordion-header-2">
+            Section 2: Why use strict locators? <span>&#9660;</span>
+          </button>
+          <div class="accordion-body">
+            <p>Strict locators ensure tests don't ambiguously match multiple unexpected DOM nodes.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false" data-testid="accordion-header-3">
+            Section 3: How to test async state? <span>&#9660;</span>
+          </button>
+          <div class="accordion-body">
+            <p>Use Playwright built-in web-first assertions like <code>expect(locator).to_be_visible()</code>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Carousel Component Section with Duplicate Slides (For .to_have_count() Practice) -->
+    <section style="margin-bottom: 3rem;">
+      <h2>Carousel / Slider (Duplicate Elements)</h2>
+      <p>Use Playwright <code>expect(locator).to_have_count(3)</code> to verify slide count.</p>
+      <div class="carousel" data-testid="carousel-component">
+        <div id="carousel-inner" class="carousel-inner">
+          <div class="carousel-item" data-testid="carousel-slide">
+            <img src="https://picsum.photos/seed/slide1/600/300" alt="Slide 1 Showcase Image">
+            <div class="carousel-caption">Slide 1: Automation Testing</div>
+          </div>
+          <div class="carousel-item" data-testid="carousel-slide">
+            <img src="https://picsum.photos/seed/slide2/600/300" alt="Slide 2 Showcase Image">
+            <div class="carousel-caption">Slide 2: End-to-End Reliability</div>
+          </div>
+          <div class="carousel-item" data-testid="carousel-slide">
+            <img src="https://picsum.photos/seed/slide3/600/300" alt="Slide 3 Showcase Image">
+            <div class="carousel-caption">Slide 3: Fast Execution</div>
+          </div>
+        </div>
+        <button id="carousel-prev" class="carousel-btn carousel-prev" aria-label="Previous Slide" data-testid="carousel-prev-btn">&#10094;</button>
+        <button id="carousel-next" class="carousel-btn carousel-next" aria-label="Next Slide" data-testid="carousel-next-btn">&#10095;</button>
+      </div>
+    </section>
+
+    <!-- Sortable Data Table Section -->
+    <section style="margin-bottom: 3rem;">
+      <h2>Sortable Data Table</h2>
+      <p>Click column headers to sort rows dynamically.</p>
+      <table id="sortable-table" data-testid="sortable-table">
+        <thead>
+          <tr>
+            <th data-sort="id" data-order="asc">ID &#8597;</th>
+            <th data-sort="name" data-order="asc">Framework Name &#8597;</th>
+            <th data-sort="language" data-order="asc">Primary Language &#8597;</th>
+            <th data-sort="stars" data-order="asc">Rating / Stars &#8597;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>101</td><td>Playwright</td><td>TypeScript / Python</td><td>48000</td></tr>
+          <tr><td>102</td><td>Cypress</td><td>JavaScript</td><td>45000</td></tr>
+          <tr><td>103</td><td>Selenium</td><td>Java / Python</td><td>29000</td></tr>
+          <tr><td>104</td><td>Puppeteer</td><td>JavaScript</td><td>83000</td></tr>
+          <tr><td>105</td><td>WebdriverIO</td><td>TypeScript</td><td>8700</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Paginated List Section -->
+    <section style="margin-bottom: 3rem;">
+      <h2>Paginated List</h2>
+      <div style="background: white; padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow);">
+        <ul id="paginated-list-container" style="list-style: none; padding: 0; margin-bottom: 1rem;">
+          <li class="paginated-item list-group-item" style="padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;">Paginated Record #1: Playwright Fixtures</li>
+          <li class="paginated-item list-group-item" style="padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;">Paginated Record #2: Page Object Model</li>
+          <li class="paginated-item list-group-item" style="padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;">Paginated Record #3: Network Interception</li>
+          <li class="paginated-item list-group-item hidden" style="padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;">Paginated Record #4: Visual Comparisons</li>
+          <li class="paginated-item list-group-item hidden" style="padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;">Paginated Record #5: Tracing and Screenshots</li>
+          <li class="paginated-item list-group-item hidden" style="padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;">Paginated Record #6: Codegen Tooling</li>
+          <li class="paginated-item list-group-item hidden" style="padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;">Paginated Record #7: Parallel Test Execution</li>
+          <li class="paginated-item list-group-item hidden" style="padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;">Paginated Record #8: Multi-Browser Contexts</li>
+        </ul>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <button id="prev-page-btn" class="btn btn-secondary" disabled data-testid="prev-page-btn">Previous</button>
+          <span id="page-indicator-text" style="font-weight: 600;" data-testid="page-indicator-text">Page 1 of 3</span>
+          <button id="next-page-btn" class="btn btn-secondary" data-testid="next-page-btn">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Drag and Drop List Section -->
+    <section style="margin-bottom: 3rem;">
+      <h2>Drag-and-Drop Reorderable List</h2>
+      <p>Drag and drop items to practice Playwright mouse / drag-and-drop actions.</p>
+      <ul id="drag-drop-list" class="drag-list" data-testid="drag-drop-list">
+        <li class="drag-item" draggable="true" data-testid="drag-item-1">&#9776; 1. Configure Test Fixtures</li>
+        <li class="drag-item" draggable="true" data-testid="drag-item-2">&#9776; 2. Launch Browser Context</li>
+        <li class="drag-item" draggable="true" data-testid="drag-item-3">&#9776; 3. Execute Locators & Actions</li>
+        <li class="drag-item" draggable="true" data-testid="drag-item-4">&#9776; 4. Assert UI State</li>
+      </ul>
+    </section>
+
+    <!-- Embedded iframe Section -->
+    <section style="margin-bottom: 3rem;">
+      <h2>Embedded &lt;iframe&gt; Demonstration</h2>
+      <p>Practice targeting frame locators with Playwright <code>page.frame_locator('iframe')</code>.</p>
+      <iframe src="about.html" title="Embedded About Page Preview" style="width: 100%; height: 350px; border: 1px solid var(--border-color); border-radius: var(--radius);" data-testid="embedded-iframe"></iframe>
+    </section>
+    </div>
+  </main>
+
+  <!-- Back to Top Floating Button -->
+  <button id="back-to-top-btn" class="btn btn-primary back-to-top" aria-label="Back to Top" data-testid="back-to-top-btn">
+    &#8593; Top
+  </button>
+
+  <!-- Footer Landmark -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Playwright Playground</h4>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Designed exclusively for practicing web automation, locator strategies, and end-to-end assertions.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>External & Contact Links</h4>
+        <ul class="footer-links">
+          <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" data-testid="external-github-link">GitHub Profile &#8599;</a></li>
+          <li><a href="mailto:support@playwrightpractice.test" data-testid="mailto-link">Email: support@playwrightpractice.test</a></li>
+          <li><a href="tel:+15551234567" data-testid="tel-link">Call: +1 (555) 123-4567</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 Playwright Web Testing Practice Ground. Built for automated testing practice.
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playwright Practice Site - Image Gallery</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Landmark & Navigation -->
+  <header>
+    <div class="nav-container">
+      <!-- Linked Logo: Image inside <a> -->
+      <a href="index.html" class="brand-logo" data-testid="linked-logo-image">
+        <img src="https://picsum.photos/seed/logo/100/100" alt="Playwright Practice Site Linked Logo">
+        <span>Playwright Playground</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link" data-testid="nav-home">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link" data-testid="nav-about">About</a></li>
+          
+          <li class="nav-item dropdown">
+            <a href="products.html" class="nav-link" id="products-dropdown-link-gallery" data-testid="nav-products">
+              Products &#9662;
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="products-dropdown-link-gallery">
+              <li class="dropdown-item"><a href="products.html" class="dropdown-link">All Products</a></li>
+              <li class="dropdown-item"><a href="products/product-1.html" class="dropdown-link">Product 1</a></li>
+              <li class="dropdown-item"><a href="products/product-2.html" class="dropdown-link">Product 2</a></li>
+              <li class="dropdown-item"><a href="products/product-3.html" class="dropdown-link">Product 3</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="gallery.html" class="nav-link active" data-testid="nav-gallery">Gallery</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link" data-testid="nav-blog">Blog</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link" data-testid="nav-contact">Contact</a></li>
+          <li class="nav-item"><a href="login.html" class="nav-link btn btn-secondary" data-testid="nav-login">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Landmark -->
+  <main id="main-content">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+      <div>
+        <h1>Image Gallery &amp; Accessibility Practice</h1>
+        <p style="color: var(--muted-text);">Real placeholder images from picsum.photos for image assertion &amp; accessibility auditing tests.</p>
+      </div>
+
+      <!-- Icon Button: <img> inside a <button> -->
+      <div>
+        <button class="btn btn-secondary" aria-label="Search Gallery" onclick="alert('Gallery Search Activated')" data-testid="icon-button-img">
+          <img src="https://picsum.photos/seed/searchicon/24/24" alt="Search Icon" style="vertical-align: middle; margin-right: 0.25rem;">
+          <span>Search</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Image Gallery Grid -->
+    <div class="grid" data-testid="image-gallery-grid">
+      <!-- Gallery Image 1 -->
+      <div class="card">
+        <img src="https://picsum.photos/seed/gal1/400/300" alt="Serene mountain landscape with reflection in lake" data-testid="gallery-img-1">
+        <div class="card-body">
+          <h2 class="card-title">Mountain Reflection</h2>
+          <p class="card-text">Unique seed: gal1. Meaningful alt attribute included.</p>
+        </div>
+      </div>
+
+      <!-- Gallery Image 2 -->
+      <div class="card">
+        <img src="https://picsum.photos/seed/gal2/400/300" alt="Modern city skyline illuminated at night" data-testid="gallery-img-2">
+        <div class="card-body">
+          <h2 class="card-title">Night Skyline</h2>
+          <p class="card-text">Unique seed: gal2. Meaningful alt attribute included.</p>
+        </div>
+      </div>
+
+      <!-- Gallery Image 3: INTENTIONALLY MISSING ALT ATTRIBUTE FOR A11Y FAILURE DEMO -->
+      <div class="card" style="border: 2px dashed var(--error-color);">
+        <!-- INTENTIONAL MISSING ALT ATTRIBUTE -->
+        <img src="https://picsum.photos/seed/gal3/400/300" data-testid="gallery-img-no-alt">
+        <div class="card-body">
+          <h2 class="card-title" style="color: var(--error-color);">Missing Alt Attribute (A11y Test Failure)</h2>
+          <p class="card-text">Intentionally missing the <code>alt</code> attribute to demonstrate automated accessibility test assertion failures (e.g. axe-core).</p>
+        </div>
+      </div>
+
+      <!-- Gallery Image 4 -->
+      <div class="card">
+        <img src="https://picsum.photos/seed/gal4/400/300" alt="Lush green forest path under morning sunlight" data-testid="gallery-img-4">
+        <div class="card-body">
+          <h2 class="card-title">Forest Pathway</h2>
+          <p class="card-text">Unique seed: gal4. Meaningful alt attribute included.</p>
+        </div>
+      </div>
+
+      <!-- Gallery Image 5 -->
+      <div class="card">
+        <img src="https://picsum.photos/seed/gal5/400/300" alt="Architectural geometry of modern glass skyscraper" data-testid="gallery-img-5">
+        <div class="card-body">
+          <h2 class="card-title">Modern Architecture</h2>
+          <p class="card-text">Unique seed: gal5. Meaningful alt attribute included.</p>
+        </div>
+      </div>
+
+      <!-- Gallery Image 6 -->
+      <div class="card">
+        <img src="https://picsum.photos/seed/gal6/400/300" alt="Ocean waves crashing against rocky shoreline during sunset" data-testid="gallery-img-6">
+        <div class="card-body">
+          <h2 class="card-title">Coastal Waves</h2>
+          <p class="card-text">Unique seed: gal6. Meaningful alt attribute included.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Landmark -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Playwright Playground</h4>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Image Gallery &amp; Accessibility Test Environment.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:support@playwrightpractice.test">support@playwrightpractice.test</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 Playwright Web Testing Practice Ground.
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

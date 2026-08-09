@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playwright Practice Site - Contact Giant Form</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Landmark & Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo" data-testid="brand-logo-link">
+        <img src="https://picsum.photos/seed/logo/100/100" alt="Playwright Practice Logo">
+        <span>Playwright Playground</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link" data-testid="nav-home">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link" data-testid="nav-about">About</a></li>
+          
+          <li class="nav-item dropdown">
+            <a href="products.html" class="nav-link" id="products-dropdown-link-contact" data-testid="nav-products">
+              Products &#9662;
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="products-dropdown-link-contact">
+              <li class="dropdown-item"><a href="products.html" class="dropdown-link">All Products</a></li>
+              <li class="dropdown-item"><a href="products/product-1.html" class="dropdown-link">Product 1</a></li>
+              <li class="dropdown-item"><a href="products/product-2.html" class="dropdown-link">Product 2</a></li>
+              <li class="dropdown-item"><a href="products/product-3.html" class="dropdown-link">Product 3</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="gallery.html" class="nav-link" data-testid="nav-gallery">Gallery</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link" data-testid="nav-blog">Blog</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link active" data-testid="nav-contact">Contact</a></li>
+          <li class="nav-item"><a href="login.html" class="nav-link btn btn-secondary" data-testid="nav-login">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Landmark -->
+  <main id="main-content">
+    <h1>Comprehensive Contact & Test Input Form</h1>
+    <p style="font-size: 1.1rem; color: var(--secondary-color); margin-bottom: 2rem;">
+      This giant form contains every native HTML input type, selects, datalists, fieldsets, file uploads, checkboxes, radio groups, and client-side validation for practicing Playwright form automation.
+    </p>
+
+    <!-- Success Message Container -->
+    <div id="contact-success-msg" class="alert alert-success hidden" role="status" tabindex="-1" data-testid="contact-success-msg">
+      <strong>Success!</strong> Your contact form submission has been processed locally without page navigation.
+    </div>
+
+    <!-- Giant Form Container -->
+    <div class="form-container">
+      <form id="giant-contact-form" data-testid="giant-contact-form" novalidate>
+        <!-- Hidden Input Type -->
+        <input type="hidden" id="form-id-hidden" name="form_id" value="contact_form_playwright_test_99">
+
+        <!-- Fieldset 1: Basic Credentials & Text Inputs -->
+        <fieldset>
+          <legend>1. Basic Identity & Text Fields</legend>
+
+          <!-- Text Input (Required with data-testid) -->
+          <div class="form-group">
+            <label for="full-name-input">Full Name (Required):</label>
+            <input type="text" id="full-name-input" name="full_name" class="form-control" placeholder="Jane Doe" required data-testid="contact-name-input">
+          </div>
+
+          <!-- Email Input -->
+          <div class="form-group">
+            <label for="email-input">Email Address (Required):</label>
+            <input type="email" id="email-input" name="email" class="form-control" placeholder="jane@example.com" required data-testid="contact-email-input">
+          </div>
+
+          <!-- Password Input (Server-side JS length validation: 8+ chars) -->
+          <div class="form-group">
+            <label for="password-field">Account Password (Min 8 Characters):</label>
+            <input type="password" id="password-field" name="password" class="form-control" placeholder="••••••••" required data-testid="contact-password-input">
+            <span id="password-error-msg" class="error-message hidden" data-testid="password-error-msg">
+              Password must be at least 8 characters long.
+            </span>
+          </div>
+
+          <!-- Telephone Input -->
+          <div class="form-group">
+            <label for="tel-input">Telephone Number:</label>
+            <input type="tel" id="tel-input" name="telephone" class="form-control" placeholder="+1 (555) 000-0000" data-testid="contact-tel-input">
+          </div>
+
+          <!-- URL Input -->
+          <div class="form-group">
+            <label for="website-url-input">Website URL:</label>
+            <input type="url" id="website-url-input" name="website" class="form-control" placeholder="https://example.com">
+          </div>
+
+          <!-- Search Input -->
+          <div class="form-group">
+            <label for="search-input">Search Term:</label>
+            <input type="search" id="search-input" name="search_term" class="form-control" placeholder="Search keywords...">
+          </div>
+        </fieldset>
+
+        <!-- Fieldset 2: Numbers, Ranges, Colors & Dates -->
+        <fieldset>
+          <legend>2. Numeric, Temporal & Color Picker Fields</legend>
+
+          <!-- Number Input -->
+          <div class="form-group">
+            <label for="age-number-input">Age / Experience (Years):</label>
+            <input type="number" id="age-number-input" name="experience_years" class="form-control" min="1" max="100" value="5" data-testid="contact-age-input">
+          </div>
+
+          <!-- Range Slider -->
+          <div class="form-group">
+            <label for="satisfaction-range-input">Satisfaction Rating (1 to 10):</label>
+            <input type="range" id="satisfaction-range-input" name="satisfaction" min="1" max="10" value="8" class="form-control" data-testid="contact-range-input">
+          </div>
+
+          <!-- Date Input -->
+          <div class="form-group">
+            <label for="preferred-date-input">Preferred Meeting Date:</label>
+            <input type="date" id="preferred-date-input" name="meeting_date" class="form-control" data-testid="contact-date-input">
+          </div>
+
+          <!-- Time Input -->
+          <div class="form-group">
+            <label for="preferred-time-input">Preferred Meeting Time:</label>
+            <input type="time" id="preferred-time-input" name="meeting_time" class="form-control">
+          </div>
+
+          <!-- Color Input -->
+          <div class="form-group">
+            <label for="theme-color-input">Preferred Theme Color:</label>
+            <input type="color" id="theme-color-input" name="theme_color" value="#2563eb">
+          </div>
+        </fieldset>
+
+        <!-- Fieldset 3: Selects, Datalist & Textarea -->
+        <fieldset>
+          <legend>3. Select Dropdowns, Datalist & Textarea</legend>
+
+          <!-- Single Select -->
+          <div class="form-group">
+            <label for="department-single-select">Target Department (Single Select):</label>
+            <select id="department-single-select" name="department" class="form-control" data-testid="contact-dept-select">
+              <option value="">-- Please Choose Department --</option>
+              <option value="qa">Quality Assurance / Testing</option>
+              <option value="engineering">Software Engineering</option>
+              <option value="product">Product Management</option>
+              <option value="support">Customer Support</option>
+            </select>
+          </div>
+
+          <!-- Multiple Select -->
+          <div class="form-group">
+            <label for="skills-multi-select">Testing Tools Experience (Multi-Select):</label>
+            <select id="skills-multi-select" name="tools_experience" class="form-control" multiple size="4" data-testid="contact-multi-select">
+              <option value="playwright_py">Playwright Python</option>
+              <option value="playwright_ts">Playwright TypeScript</option>
+              <option value="pytest">Pytest Framework</option>
+              <option value="selenium">Selenium WebDriver</option>
+              <option value="appium">Appium Mobile</option>
+            </select>
+          </div>
+
+          <!-- Datalist Autocomplete Input -->
+          <div class="form-group">
+            <label for="browser-datalist-input">Preferred Test Browser (Datalist Autocomplete):</label>
+            <input type="text" id="browser-datalist-input" name="favorite_browser" list="browser-options-list" class="form-control" placeholder="Type browser name..." data-testid="contact-datalist-input">
+            <datalist id="browser-options-list">
+              <option value="Chromium">
+              <option value="Firefox">
+              <option value="WebKit (Safari)">
+              <option value="Google Chrome">
+              <option value="Microsoft Edge">
+            </datalist>
+          </div>
+
+          <!-- Textarea -->
+          <div class="form-group">
+            <label for="message-textarea">Detailed Message / Notes:</label>
+            <textarea id="message-textarea" name="message_text" class="form-control" rows="4" placeholder="Enter your detailed inquiry or message..." data-testid="contact-message-textarea"></textarea>
+          </div>
+        </fieldset>
+
+        <!-- Fieldset 4: File Upload Inputs -->
+        <fieldset>
+          <legend>4. Attachments & File Uploads</legend>
+
+          <!-- Single File Input -->
+          <div class="form-group">
+            <label for="file-input-single">Upload Single File (Resume / Log):</label>
+            <input type="file" id="file-input-single" name="single_attachment" class="form-control" data-testid="contact-file-single">
+            <span id="selected-file-name-preview" style="font-weight: 500; color: var(--primary-color); display: block; margin-top: 0.25rem;">
+              No file selected
+            </span>
+          </div>
+
+          <!-- Multiple File Input -->
+          <div class="form-group">
+            <label for="file-input-multi">Upload Multiple Screenshots:</label>
+            <input type="file" id="file-input-multi" name="multi_attachments" class="form-control" multiple data-testid="contact-file-multi">
+          </div>
+        </fieldset>
+
+        <!-- Fieldset 5: Checkboxes & Radio Button Groups -->
+        <fieldset>
+          <legend>5. Selection Controls (Checkboxes & Radios)</legend>
+
+          <!-- Standalone Checkboxes -->
+          <div class="form-group">
+            <span style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Standalone Checkboxes:</span>
+            
+            <div class="form-check">
+              <input type="checkbox" id="newsletter-check" name="subscribe_newsletter" data-testid="newsletter-checkbox">
+              <label for="newsletter-check">Subscribe to QA Automation Weekly Newsletter</label>
+            </div>
+
+            <div class="form-check">
+              <input type="checkbox" id="terms-check" name="accept_terms" required data-testid="terms-checkbox">
+              <label for="terms-check">I agree to the Privacy Policy & Terms of Testing (Required)</label>
+            </div>
+          </div>
+
+          <!-- Related Checkbox Group (Sharing name attribute) -->
+          <div class="form-group">
+            <span style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Testing Areas of Interest (Checkbox Group):</span>
+
+            <div class="form-check">
+              <input type="checkbox" id="interest-e2e" name="interests" value="e2e">
+              <label for="interest-e2e">End-to-End Automation</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" id="interest-api" name="interests" value="api">
+              <label for="interest-api">API Testing & Interception</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" id="interest-a11y" name="interests" value="a11y">
+              <label for="interest-a11y">Accessibility (WCAG) Auditing</label>
+            </div>
+          </div>
+
+          <!-- Radio Button Group of 3 -->
+          <div class="form-group">
+            <span style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Preferred Contact Method (Radio Group of 3):</span>
+
+            <div class="form-check">
+              <input type="radio" id="pref-email" name="contact_pref" value="email" checked data-testid="radio-email">
+              <label for="pref-email">Email Communication</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" id="pref-phone" name="contact_pref" value="phone" data-testid="radio-phone">
+              <label for="pref-phone">Phone Call</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" id="pref-sms" name="contact_pref" value="sms" data-testid="radio-sms">
+              <label for="pref-sms">SMS / Text Message</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Form Action Buttons -->
+        <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+          <button type="submit" class="btn btn-primary" data-testid="contact-submit-btn">Submit Inquiry</button>
+          <button type="reset" class="btn btn-secondary" data-testid="contact-reset-btn">Reset Form</button>
+          <button type="button" class="btn btn-secondary" disabled data-testid="contact-disabled-btn">Disabled Button</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer Landmark -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Playwright Playground</h4>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Giant form test environment for web automation.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Contact Support</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:support@playwrightpractice.test">support@playwrightpractice.test</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 Playwright Web Testing Practice Ground.
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

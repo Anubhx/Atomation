@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - Playwright Runner Pro</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Landmark & Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="../index.html" class="brand-logo" data-testid="brand-logo-link">
+        <img src="https://picsum.photos/seed/logo/100/100" alt="Playwright Practice Logo">
+        <span>Playwright Playground</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="../index.html" class="nav-link" data-testid="nav-home">Home</a></li>
+          <li class="nav-item"><a href="../about.html" class="nav-link" data-testid="nav-about">About</a></li>
+          
+          <li class="nav-item dropdown">
+            <a href="../products.html" class="nav-link active" id="products-dropdown-link-p1" data-testid="nav-products">
+              Products &#9662;
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="products-dropdown-link-p1">
+              <li class="dropdown-item"><a href="../products.html" class="dropdown-link">All Products</a></li>
+              <li class="dropdown-item"><a href="product-1.html" class="dropdown-link">Product 1</a></li>
+              <li class="dropdown-item"><a href="product-2.html" class="dropdown-link">Product 2</a></li>
+              <li class="dropdown-item"><a href="product-3.html" class="dropdown-link">Product 3</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="../gallery.html" class="nav-link" data-testid="nav-gallery">Gallery</a></li>
+          <li class="nav-item"><a href="../blog.html" class="nav-link" data-testid="nav-blog">Blog</a></li>
+          <li class="nav-item"><a href="../contact.html" class="nav-link" data-testid="nav-contact">Contact</a></li>
+          <li class="nav-item"><a href="../login.html" class="nav-link btn btn-secondary" data-testid="nav-login">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Landmark -->
+  <main id="main-content">
+    <a href="../products.html" class="btn btn-secondary" style="margin-bottom: 1.5rem;" data-testid="back-to-products-btn">
+      &#8592; Back to Products Catalog
+    </a>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+      <div>
+        <img src="https://picsum.photos/seed/prod1/600/400" alt="Playwright Runner Pro Showcase Image" style="width: 100%; border-radius: var(--radius); box-shadow: var(--shadow);" data-testid="product-main-img">
+      </div>
+
+      <div>
+        <h1 data-testid="product-title">Playwright Runner Pro</h1>
+        <p style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color); margin: 0.5rem 0;" data-testid="product-price">$99.00 USD</p>
+        <p style="color: var(--muted-text); margin-bottom: 1.5rem;">
+          Playwright Runner Pro is an enterprise test execution CLI tool featuring automated retries, HTML report rendering, multi-browser parallelization, and instant trace viewer file generation.
+        </p>
+
+        <h3>Key Features</h3>
+        <ul style="margin: 1rem 0 1.5rem 1.5rem;">
+          <li>Parallel browser worker threads</li>
+          <li>Built-in video recording & failure screenshots</li>
+          <li>Seamless GitHub Actions & GitLab CI integration</li>
+        </ul>
+
+        <div style="display: flex; gap: 1rem;">
+          <a href="../contact.html" class="btn btn-primary" data-testid="buy-now-btn">Inquire / Buy Now</a>
+          <a href="../downloads/sample-download.txt" download="sample.txt" class="btn btn-secondary" data-testid="download-spec-sheet">Download Spec Sheet</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Landmark -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Playwright Playground</h4>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Product 1 Detail Page.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../products.html">Products</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:support@playwrightpractice.test">support@playwrightpractice.test</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 Playwright Web Testing Practice Ground.
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>

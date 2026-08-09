@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playwright Practice Site - User Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Landmark & Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo" data-testid="brand-logo-link">
+        <img src="https://picsum.photos/seed/logo/100/100" alt="Playwright Practice Logo">
+        <span>Playwright Playground</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link" data-testid="nav-home">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link" data-testid="nav-about">About</a></li>
+          
+          <li class="nav-item dropdown">
+            <a href="products.html" class="nav-link" id="products-dropdown-link-dash" data-testid="nav-products">
+              Products &#9662;
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="products-dropdown-link-dash">
+              <li class="dropdown-item"><a href="products.html" class="dropdown-link">All Products</a></li>
+              <li class="dropdown-item"><a href="products/product-1.html" class="dropdown-link">Product 1</a></li>
+              <li class="dropdown-item"><a href="products/product-2.html" class="dropdown-link">Product 2</a></li>
+              <li class="dropdown-item"><a href="products/product-3.html" class="dropdown-link">Product 3</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="gallery.html" class="nav-link" data-testid="nav-gallery">Gallery</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link" data-testid="nav-blog">Blog</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link" data-testid="nav-contact">Contact</a></li>
+          <li class="nav-item"><a href="dashboard.html" class="nav-link active" data-testid="nav-dashboard">Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Landmark -->
+  <main id="main-content">
+    <!-- Unauthenticated State Alert -->
+    <div id="login-required-msg" class="alert alert-danger" data-testid="login-required-msg">
+      <h2>Access Denied: Authentication Required</h2>
+      <p style="margin: 0.5rem 0;">You must be logged in to view the dashboard contents. No active <code>auth_session</code> was found in your browser <code>localStorage</code>.</p>
+      <a href="login.html" class="btn btn-primary" style="margin-top: 1rem;" data-testid="redirect-login-link">Go to Login Page</a>
+    </div>
+
+    <!-- Authenticated Protected Dashboard Content -->
+    <div id="dashboard-content" class="hidden" data-testid="dashboard-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <div>
+          <h1>Welcome, <span id="user-greeting" data-testid="user-greeting">QA Tester</span>!</h1>
+          <p style="color: var(--muted-text);">Protected session active (Token validated from localStorage).</p>
+        </div>
+        <button id="logout-btn" class="btn btn-danger" data-testid="logout-btn">Log Out</button>
+      </div>
+
+      <!-- Dashboard Cards -->
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-bottom: 2rem;">
+        <div class="card" style="padding: 1.5rem; text-align: center;">
+          <h3 style="color: var(--primary-color); font-size: 2rem; margin-bottom: 0.25rem;" data-testid="stat-tests-run">1,248</h3>
+          <p style="color: var(--muted-text); font-weight: 500;">Automated Tests Executed</p>
+        </div>
+        <div class="card" style="padding: 1.5rem; text-align: center;">
+          <h3 style="color: var(--success-color); font-size: 2rem; margin-bottom: 0.25rem;" data-testid="stat-pass-rate">99.4%</h3>
+          <p style="color: var(--muted-text); font-weight: 500;">Pass Rate</p>
+        </div>
+        <div class="card" style="padding: 1.5rem; text-align: center;">
+          <h3 style="color: var(--warning-color); font-size: 2rem; margin-bottom: 0.25rem;" data-testid="stat-execution-time">1.2s</h3>
+          <p style="color: var(--muted-text); font-weight: 500;">Avg Assert Time</p>
+        </div>
+      </div>
+
+      <h2>Recent Test Activity</h2>
+      <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;" data-testid="activity-table">
+        <thead>
+          <tr style="background: #f1f5f9;">
+            <th style="padding: 0.75rem;">Test Name</th>
+            <th style="padding: 0.75rem;">Status</th>
+            <th style="padding: 0.75rem;">Browser</th>
+            <th style="padding: 0.75rem;">Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">test_login_flow</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color); color: var(--success-color); font-weight: 600;">PASSED</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">Chromium</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">420ms</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">test_giant_contact_form</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color); color: var(--success-color); font-weight: 600;">PASSED</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">Firefox</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">850ms</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">test_modal_focus_trap</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color); color: var(--success-color); font-weight: 600;">PASSED</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">WebKit</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">310ms</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Footer Landmark -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Playwright Playground</h4>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Protected User Dashboard.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:support@playwrightpractice.test">support@playwrightpractice.test</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 Playwright Web Testing Practice Ground.
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

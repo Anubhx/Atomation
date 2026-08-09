@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playwright Practice Site - About Us</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Landmark & Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo" data-testid="brand-logo-link">
+        <img src="https://picsum.photos/seed/logo/100/100" alt="Playwright Practice Logo">
+        <span>Playwright Playground</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link" data-testid="nav-home">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link active" data-testid="nav-about">About</a></li>
+          
+          <li class="nav-item dropdown">
+            <a href="products.html" class="nav-link" id="products-dropdown-link-about" data-testid="nav-products">
+              Products &#9662;
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="products-dropdown-link-about">
+              <li class="dropdown-item"><a href="products.html" class="dropdown-link">All Products</a></li>
+              <li class="dropdown-item"><a href="products/product-1.html" class="dropdown-link">Product 1</a></li>
+              <li class="dropdown-item"><a href="products/product-2.html" class="dropdown-link">Product 2</a></li>
+              <li class="dropdown-item"><a href="products/product-3.html" class="dropdown-link">Product 3</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="gallery.html" class="nav-link" data-testid="nav-gallery">Gallery</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link" data-testid="nav-blog">Blog</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link" data-testid="nav-contact">Contact</a></li>
+          <li class="nav-item"><a href="login.html" class="nav-link btn btn-secondary" data-testid="nav-login">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Layout with Main & Aside Landmarks -->
+  <div style="max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+    <!-- Main Landmark -->
+    <main id="main-content">
+      <h1>About Playwright Playground</h1>
+      <p style="font-size: 1.1rem; color: var(--secondary-color); margin: 1rem 0;">
+        This site is an isolated static environment created specifically for QA engineers, developers, and SDETs to practice writing Playwright test scripts.
+      </p>
+
+      <h2>Our Core Objectives</h2>
+      <ul style="margin: 1rem 0 2rem 1.5rem;">
+        <li>Provide predictable DOM structures for strict role, label, text, and testid locators.</li>
+        <li>Simulate real-world async UI dynamics (network delays, spinners, toasts, modals).</li>
+        <li>Offer comprehensive form controls for testing inputs, selects, files, and validation states.</li>
+        <li>Test accessibility features including proper ARIA roles, landmarks, and intentional audit failures.</li>
+      </ul>
+
+      <!-- Repeating Link Text Demonstration -->
+      <section style="margin-bottom: 2rem; padding: 1rem; background: #e2e8f0; border-radius: var(--radius);">
+        <h3>Strict Mode Locator Practice: Repeating Link Text</h3>
+        <p>Multiple links with exact duplicate visible text <code>Learn More</code> for practicing strict mode violation handling and filtering.</p>
+        <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+          <a href="products/product-1.html" class="btn btn-secondary" data-testid="about-repeating-1">Learn More</a>
+          <a href="products/product-2.html" class="btn btn-secondary" data-testid="about-repeating-2">Learn More</a>
+          <a href="products/product-3.html" class="btn btn-secondary" data-testid="about-repeating-3">Learn More</a>
+        </div>
+      </section>
+
+      <h2>Team Profile Showcase</h2>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+        <div class="card">
+          <img src="https://picsum.photos/seed/team1/300/200" alt="Profile photo of Alex Rivers, QA Lead">
+          <div class="card-body">
+            <h3 class="card-title">Alex Rivers</h3>
+            <p class="card-text">Lead Automation Engineer specializing in Playwright Python & TypeScript frameworks.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://picsum.photos/seed/team2/300/200" alt="Profile photo of Morgan Vance, SDET">
+          <div class="card-body">
+            <h3 class="card-title">Morgan Vance</h3>
+            <p class="card-text">Software Engineer in Test focused on CI/CD pipelines and web accessibility auditing.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Aside Landmark (Sidebar) -->
+    <aside aria-label="About Page Sidebar" style="background: white; padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border-color); height: fit-content;">
+      <h2>Quick Resources</h2>
+      <p style="margin-bottom: 1rem; color: var(--muted-text);">Useful external and contact links for testing:</p>
+
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.75rem;">
+          <strong>External Repository:</strong><br>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" data-testid="about-github-link">
+            Visit GitHub Profile &#8599;
+          </a>
+        </li>
+        <li style="margin-bottom: 0.75rem;">
+          <strong>Email Support:</strong><br>
+          <a href="mailto:qa-team@playwrightpractice.test" data-testid="about-mailto-link">qa-team@playwrightpractice.test</a>
+        </li>
+        <li style="margin-bottom: 0.75rem;">
+          <strong>Telephone Contact:</strong><br>
+          <a href="tel:+18005550199" data-testid="about-tel-link">+1 (800) 555-0199</a>
+        </li>
+        <li style="margin-bottom: 0.75rem;">
+          <strong>Download Asset:</strong><br>
+          <a href="downloads/sample-download.txt" download="sample.txt" class="btn btn-secondary" data-testid="about-download-link">
+            Download sample-download.txt
+          </a>
+        </li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Footer Landmark -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Playwright Playground</h4>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Built for automated testing practice.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:qa-team@playwrightpractice.test">Email Us</a></li>
+          <li><a href="tel:+18005550199">Call Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 Playwright Web Testing Practice Ground.
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

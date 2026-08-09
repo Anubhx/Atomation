@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playwright Practice Site - Products Catalog</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Landmark & Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo" data-testid="brand-logo-link">
+        <img src="https://picsum.photos/seed/logo/100/100" alt="Playwright Practice Logo">
+        <span>Playwright Playground</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link" data-testid="nav-home">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link" data-testid="nav-about">About</a></li>
+          
+          <li class="nav-item dropdown">
+            <a href="products.html" class="nav-link active" id="products-dropdown-link-prod" data-testid="nav-products">
+              Products &#9662;
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="products-dropdown-link-prod">
+              <li class="dropdown-item"><a href="products.html" class="dropdown-link">All Products</a></li>
+              <li class="dropdown-item"><a href="products/product-1.html" class="dropdown-link">Product 1</a></li>
+              <li class="dropdown-item"><a href="products/product-2.html" class="dropdown-link">Product 2</a></li>
+              <li class="dropdown-item"><a href="products/product-3.html" class="dropdown-link">Product 3</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="gallery.html" class="nav-link" data-testid="nav-gallery">Gallery</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link" data-testid="nav-blog">Blog</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link" data-testid="nav-contact">Contact</a></li>
+          <li class="nav-item"><a href="login.html" class="nav-link btn btn-secondary" data-testid="nav-login">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Landmark -->
+  <main id="main-content">
+    <h1>Testing Tools & Software Catalog</h1>
+    <p style="font-size: 1.1rem; color: var(--secondary-color); margin-bottom: 2rem;">
+      Browse our gallery of 9 test automation products. Practice locating elements inside grid lists, cards, and navigating to detail pages.
+    </p>
+
+    <!-- Grid of 9 Product Cards -->
+    <div class="grid" data-testid="product-grid">
+      <!-- Product Card 1 -->
+      <div class="card" data-testid="product-card-1">
+        <img src="https://picsum.photos/seed/prod1/400/250" alt="Product 1: Playwright Test Runner Pro">
+        <div class="card-body">
+          <h2 class="card-title">Playwright Runner Pro</h2>
+          <p class="card-text">Advanced test execution engine with built-in video recording and trace viewer integration.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-weight: 700; font-size: 1.1rem;">$99.00</span>
+            <a href="products/product-1.html" class="btn btn-primary" data-testid="view-product-1">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 2 -->
+      <div class="card" data-testid="product-card-2">
+        <img src="https://picsum.photos/seed/prod2/400/250" alt="Product 2: Locator Inspector Studio">
+        <div class="card-body">
+          <h2 class="card-title">Locator Inspector Studio</h2>
+          <p class="card-text">Visual DOM element inspector for generating resilient ARIA and role-based Playwright locators.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-weight: 700; font-size: 1.1rem;">$49.00</span>
+            <a href="products/product-2.html" class="btn btn-primary" data-testid="view-product-2">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 3 -->
+      <div class="card" data-testid="product-card-3">
+        <img src="https://picsum.photos/seed/prod3/400/250" alt="Product 3: Network Interception Mock Server">
+        <div class="card-body">
+          <h2 class="card-title">Network Mock Server</h2>
+          <p class="card-text">Mock REST & GraphQL endpoints seamlessly for fast, offline Playwright E2E tests.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-weight: 700; font-size: 1.1rem;">$79.00</span>
+            <a href="products/product-3.html" class="btn btn-primary" data-testid="view-product-3">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 4 -->
+      <div class="card" data-testid="product-card-4">
+        <img src="https://picsum.photos/seed/prod4/400/250" alt="Product 4: Accessibility Auditor Suite">
+        <div class="card-body">
+          <h2 class="card-title">Accessibility Auditor Suite</h2>
+          <p class="card-text">Integrated axe-core testing tool for verifying WCAG 2.1 compliance automated assertions.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-weight: 700; font-size: 1.1rem;">$129.00</span>
+            <a href="products/product-1.html" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 5 -->
+      <div class="card" data-testid="product-card-5">
+        <img src="https://picsum.photos/seed/prod5/400/250" alt="Product 5: Visual Regression Comparator">
+        <div class="card-body">
+          <h2 class="card-title">Visual Regression Tool</h2>
+          <p class="card-text">Pixel-by-pixel screenshot difference analysis with customizable threshold configurations.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-weight: 700; font-size: 1.1rem;">$149.00</span>
+            <a href="products/product-2.html" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 6 -->
+      <div class="card" data-testid="product-card-6">
+        <img src="https://picsum.photos/seed/prod6/400/250" alt="Product 6: Cross-Browser Cloud Grid">
+        <div class="card-body">
+          <h2 class="card-title">Cross-Browser Cloud Grid</h2>
+          <p class="card-text">Parallel test execution infrastructure across Chromium, Firefox, and WebKit browsers.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-weight: 700; font-size: 1.1rem;">$199.00</span>
+            <a href="products/product-3.html" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 7 -->
+      <div class="card" data-testid="product-card-7">
+        <img src="https://picsum.photos/seed/prod7/400/250" alt="Product 7: Mobile Device Simulator Kit">
+        <div class="card-body">
+          <h2 class="card-title">Mobile Device Simulator</h2>
+          <p class="card-text">Emulate touch viewports, geo-location, user-agents, and orientation for mobile web testing.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-weight: 700; font-size: 1.1rem;">$89.00</span>
+            <a href="products/product-1.html" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 8 -->
+      <div class="card" data-testid="product-card-8">
+        <img src="https://picsum.photos/seed/prod8/400/250" alt="Product 8: Performance Metrics Monitor">
+        <div class="card-body">
+          <h2 class="card-title">Performance Monitor</h2>
+          <p class="card-text">Capture Lighthouse Core Web Vitals (LCP, CLS, INP) metrics directly during E2E runs.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-weight: 700; font-size: 1.1rem;">$69.00</span>
+            <a href="products/product-2.html" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 9 -->
+      <div class="card" data-testid="product-card-9">
+        <img src="https://picsum.photos/seed/prod9/400/250" alt="Product 9: Playwright Test Data Generator">
+        <div class="card-body">
+          <h2 class="card-title">Test Data Generator</h2>
+          <p class="card-text">Generate randomized synthetic user profiles, emails, phone numbers, and addresses.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-weight: 700; font-size: 1.1rem;">$39.00</span>
+            <a href="products/product-3.html" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Landmark -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Playwright Playground</h4>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Product Catalog Test Environment.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:support@playwrightpractice.test">support@playwrightpractice.test</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 Playwright Web Testing Practice Ground.
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
