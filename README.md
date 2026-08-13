@@ -113,7 +113,7 @@ keys = [
 ]
 
 [settings]
-generation_model = "gemini-2.5-flash"
+generation_model = "gemini-2.5-flash-lite"
 embedding_model = "text-embedding-004"
 top_k = 5
 temperature = 0.2
