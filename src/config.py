@@ -33,7 +33,7 @@ ALLOWED_ROOT_NAMES = [
 ]
 
 # Model Configuration
-DEFAULT_GENERATION_MODEL = "gemini-2.5-flash"
+DEFAULT_GENERATION_MODEL = "gemini-2.5-flash-lite"
 DEFAULT_EMBEDDING_MODEL = "text-embedding-004"
 
 # RAG & LLM Settings
