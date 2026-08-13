@@ -123,6 +123,11 @@ def process_query(query_text: str):
             "badge": badge
         })
 
+def set_nav_target(target_page: str, doc_path: str = None):
+    st.session_state.nav_selection = target_page
+    if doc_path is not None:
+        st.session_state.selected_doc_path = doc_path
+
 # ==============================================================================
 # SIDEBAR NAVIGATION & SETTINGS
 # ==============================================================================
@@ -185,19 +190,13 @@ if nav_choice == "🏠 Home":
     col_a, col_b, col_c = st.columns(3)
     with col_a:
         st.info("💬 **Ask QE**\n\nAsk questions about P2P workflows, 3-way matching, Playwright locators, pytest fixtures, and SQL verification.")
-        if st.button("Go to Ask QE 💬", key="dash_btn_ask"):
-            st.session_state.nav_selection = "💬 Ask QE"
-            st.rerun()
+        st.button("Go to Ask QE 💬", key="dash_btn_ask", on_click=set_nav_target, args=("💬 Ask QE",))
     with col_b:
         st.success("📚 **Knowledge Base Browser**\n\nExplore 89+ structured QA Markdown guides across 26 modules with frontmatter metadata & search.")
-        if st.button("Browse Knowledge Base 📚", key="dash_btn_kb"):
-            st.session_state.nav_selection = "📚 Knowledge Base"
-            st.rerun()
+        st.button("Browse Knowledge Base 📚", key="dash_btn_kb", on_click=set_nav_target, args=("📚 Knowledge Base",))
     with col_c:
         st.warning("💻 **Code Browser**\n\nBrowse test code files and automatically see linked QA documentation and perform AI code reviews.")
-        if st.button("Open Code Browser 💻", key="dash_btn_code"):
-            st.session_state.nav_selection = "💻 Code Browser"
-            st.rerun()
+        st.button("Open Code Browser 💻", key="dash_btn_code", on_click=set_nav_target, args=("💻 Code Browser",))
 
     st.markdown("---")
     st.markdown("### 📌 Pinned Workspace Shortcuts")
@@ -205,10 +204,7 @@ if nav_choice == "🏠 Home":
     p_cols = st.columns(min(len(pins), 5))
     for idx, pin in enumerate(pins[:5]):
         with p_cols[idx]:
-            if st.button(pin["title"], key=f"home_pin_{idx}"):
-                st.session_state.selected_doc_path = pin["path"]
-                st.session_state.nav_selection = "📚 Knowledge Base"
-                st.rerun()
+            st.button(pin["title"], key=f"home_pin_{idx}", on_click=set_nav_target, args=("📚 Knowledge Base", pin["path"]))
 
 # ==============================================================================
 # VIEW 2: ASK QE (CHAT INTERFACE)
@@ -388,8 +384,7 @@ elif nav_choice == "🔍 Global Search":
                     with st.expander(f"{item.title} — `{item.path}`"):
                         st.markdown(f"**Match Type:** {item.match_type}")
                         st.markdown(f"> *{item.snippet}*")
-                        if st.button(f"Open {item.title}", key=f"search_open_{item.path}"):
-                            st.session_state.selected_doc_path = item.path
+                        st.button(f"Open {item.title}", key=f"search_open_{item.path}", on_click=set_nav_target, args=("📚 Knowledge Base", item.path))
 
 # ==============================================================================
 # VIEW 6: TEST CASE GENERATOR
