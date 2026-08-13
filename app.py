@@ -80,6 +80,49 @@ llm_client = GeminiClient(
 )
 mode_handler = ModeHandler(router=router, llm_client=llm_client)
 
+if "nav_selection" not in st.session_state:
+    st.session_state.nav_selection = "🏠 Home"
+
+llm_client = GeminiClient(
+    key_pool=key_pool,
+    model_name=st.session_state.gen_model,
+    local_only=st.session_state.local_only
+)
+mode_handler = ModeHandler(router=router, llm_client=llm_client)
+
+# Helper function to process queries
+def process_query(query_text: str):
+    st.session_state.chat_history.append({"role": "user", "content": query_text})
+    cached_res = cache.get(query_text)
+    if cached_res:
+        usage.log_request("cache_hit")
+        answer_text = f"⚡ *(Cached Local Answer)*\n\n{cached_res['answer']}"
+        st.session_state.chat_history.append({
+            "role": "assistant",
+            "content": answer_text,
+            "badge": "Normalized Query Cache"
+        })
+    else:
+        res = mode_handler.execute_ask_mode(
+            query=query_text,
+            top_k=st.session_state.top_k,
+            target_doc_id=st.session_state.selected_doc_path
+        )
+        answer_text = res["answer"]
+        badge = res["source_type"]
+
+        if res.get("used_gemini"):
+            usage.log_request("gemini")
+        else:
+            usage.log_request("local_answer")
+
+        cache.set(query_text, answer_text, res.get("sources", []), source_type=badge)
+        st.session_state.chat_history.append({
+            "role": "assistant",
+            "content": answer_text,
+            "badge": badge
+        })
+
 # ==============================================================================
 # SIDEBAR NAVIGATION & SETTINGS
 # ==============================================================================
@@ -103,7 +146,8 @@ nav_choice = st.sidebar.radio(
         "⭐ My Workspace",
         "📊 Usage & Metrics",
         "⚙️ Settings"
-    ]
+    ],
+    key="nav_selection"
 )
 
 st.sidebar.markdown("---")
@@ -141,11 +185,21 @@ if nav_choice == "🏠 Home":
     col_a, col_b, col_c = st.columns(3)
     with col_a:
         st.info("💬 **Ask QE**\n\nAsk questions about P2P workflows, 3-way matching, Playwright locators, pytest fixtures, and SQL verification.")
+        if st.button("Go to Ask QE 💬", key="dash_btn_ask"):
+            st.session_state.nav_selection = "💬 Ask QE"
+            st.rerun()
     with col_b:
         st.success("📚 **Knowledge Base Browser**\n\nExplore 89+ structured QA Markdown guides across 26 modules with frontmatter metadata & search.")
+        if st.button("Browse Knowledge Base 📚", key="dash_btn_kb"):
+            st.session_state.nav_selection = "📚 Knowledge Base"
+            st.rerun()
     with col_c:
         st.warning("💻 **Code Browser**\n\nBrowse test code files and automatically see linked QA documentation and perform AI code reviews.")
+        if st.button("Open Code Browser 💻", key="dash_btn_code"):
+            st.session_state.nav_selection = "💻 Code Browser"
+            st.rerun()
 
+    st.markdown("---")
     st.markdown("### 📌 Pinned Workspace Shortcuts")
     pins = workspace.get_pins()
     p_cols = st.columns(min(len(pins), 5))
@@ -153,6 +207,8 @@ if nav_choice == "🏠 Home":
         with p_cols[idx]:
             if st.button(pin["title"], key=f"home_pin_{idx}"):
                 st.session_state.selected_doc_path = pin["path"]
+                st.session_state.nav_selection = "📚 Knowledge Base"
+                st.rerun()
 
 # ==============================================================================
 # VIEW 2: ASK QE (CHAT INTERFACE)
@@ -160,6 +216,36 @@ if nav_choice == "🏠 Home":
 elif nav_choice == "💬 Ask QE":
     st.title("💬 QE Copilot — Interactive Assistant")
     st.caption("Ask questions about Software Testing, ERP Workflows, Playwright, Pytest, SQL, and Test Design.")
+
+    # Pre-written Clickable Quick Questions (Local Fast-Path Answers)
+    st.markdown("##### 💡 Quick Sample Questions (Local Fast-Path Answers):")
+    sample_q_cols = st.columns(3)
+    
+    with sample_q_cols[0]:
+        if st.button("⚡ ERP 3-Way Match", key="sample_q_3way", use_container_width=True):
+            process_query("Explain 3-way match")
+            st.rerun()
+        if st.button("⚡ Playwright locators", key="sample_q_locators", use_container_width=True):
+            process_query("What is Playwright get_by_role syntax?")
+            st.rerun()
+
+    with sample_q_cols[1]:
+        if st.button("⚡ Playwright Strict Mode Fix", key="sample_q_strict", use_container_width=True):
+            process_query("How to fix Playwright strict mode error?")
+            st.rerun()
+        if st.button("⚡ HTTP 401 / 403 / 404 Codes", key="sample_q_http", use_container_width=True):
+            process_query("What is HTTP 401 403 404?")
+            st.rerun()
+
+    with sample_q_cols[2]:
+        if st.button("⚡ Pytest Fixtures", key="sample_q_pytest", use_container_width=True):
+            process_query("What is pytest fixture syntax?")
+            st.rerun()
+        if st.button("⚡ SQL JOIN Syntax", key="sample_q_sql", use_container_width=True):
+            process_query("What is SQL INNER JOIN syntax?")
+            st.rerun()
+
+    st.markdown("---")
 
     # Show active target doc constraint if set
     if st.session_state.selected_doc_path:
@@ -177,51 +263,8 @@ elif nav_choice == "💬 Ask QE":
 
     # Chat Input
     if user_query := st.chat_input("Ask a QE question (e.g. 'How do I test a 3-way match?' or 'Playwright get_by_role syntax')"):
-        # Display user message
-        st.session_state.chat_history.append({"role": "user", "content": user_query})
-        with st.chat_message("user"):
-            st.markdown(user_query)
-
-        # Check normalized answer cache first
-        cached_res = cache.get(user_query)
-        if cached_res:
-            usage.log_request("cache_hit")
-            answer_text = f"⚡ *(Cached Local Answer)*\n\n{cached_res['answer']}"
-            st.session_state.chat_history.append({
-                "role": "assistant",
-                "content": answer_text,
-                "badge": "Normalized Query Cache"
-            })
-            with st.chat_message("assistant"):
-                st.markdown(answer_text)
-                st.caption("Source: Normalized Query Cache")
-        else:
-            with st.spinner("Analyzing knowledge base..."):
-                res = mode_handler.execute_ask_mode(
-                    query=user_query,
-                    top_k=st.session_state.top_k,
-                    target_doc_id=st.session_state.selected_doc_path
-                )
-                answer_text = res["answer"]
-                badge = res["source_type"]
-
-                if res.get("used_gemini"):
-                    usage.log_request("gemini")
-                else:
-                    usage.log_request("local_answer")
-
-                # Cache response
-                cache.set(user_query, answer_text, res.get("sources", []), source_type=badge)
-
-                st.session_state.chat_history.append({
-                    "role": "assistant",
-                    "content": answer_text,
-                    "badge": badge
-                })
-
-                with st.chat_message("assistant"):
-                    st.markdown(answer_text)
-                    st.caption(f"Source: {badge}")
+        process_query(user_query)
+        st.rerun()
 
 # ==============================================================================
 # VIEW 3: KNOWLEDGE BASE BROWSER

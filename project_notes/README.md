@@ -12,3 +12,4 @@ Store project-specific knowledge here, such as:
 - `open-questions.md`: Questions for BA/Architect
 
 Project notes receive higher retrieval priority when project-specific context is requested.
+
