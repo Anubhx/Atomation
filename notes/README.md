@@ -24,6 +24,9 @@ difficulty: beginner-to-advanced
 
 Welcome to the **Enterprise Quality Engineering Field Manual**. This knowledge base is built specifically for Quality Engineers and SDETs working on complex enterprise client systems (ERP, MedTech, Cloud API services, Data-Intensive Web Platforms).
 
+> 🌐 **Live Web Application**: [https://qe-copilot.streamlit.app](https://qe-copilot.streamlit.app)  
+> 💻 **Local Development UI**: [http://localhost:8501](http://localhost:8501)
+
 Unlike high-level generic tutorials, this repository serves as an **operational field manual**—giving you exact workflows, production-ready Playwright/Python code, enterprise SQL queries, business process validation matrices, defect templates, and AI prompt engineering strategies.
 
 ---
@@ -78,6 +81,8 @@ Below is the complete module index. Click any link to jump directly into the ded
 * [03. Postman Mastery (Collections, Env, Chaining, Pre-Request)](06_API_TESTING/03_postman_mastery_collections_vars_scripts.md)
 * [04. API Strategy, Negative Testing, Contract & Mocking](06_API_TESTING/04_api_testing_strategy_negative_contract_mocking.md)
 * [05. Python API Automation (Requests & Pytest Integration)](06_API_TESTING/05_python_api_automation.md)
+* [06. FastAPI Architecture, Setup, Swagger UI & File Conversion Pipelines](06_API_TESTING/06_fastapi_setup_swagger_file_conversions.md)
+
 
 ### 07. SQL & Database Testing
 * [01. SQL Basics for QA (SELECT, WHERE, GROUP BY, JOINs)](07_DATABASE_TESTING/01_sql_for_qa_select_where_joins.md)

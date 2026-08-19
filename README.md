@@ -1,6 +1,9 @@
 # QE Copilot — Private Personal RAG QA & ERP Testing Assistant
 
-**QE Copilot** is a private, fast, personal Quality Engineering and ERP Testing assistant built on top of your existing local `notes/` knowledge base (89+ structured Markdown documents across 26 modules).
+**QE Copilot** is a private, fast, personal Quality Engineering and ERP Testing assistant built on top of your existing local `notes/` knowledge base (90+ structured Markdown documents across 26 modules).
+
+> 🌐 **Live Web Application**: [https://qe-copilot.streamlit.app](https://qe-copilot.streamlit.app)  
+> 💻 **Local Development UI**: [http://localhost:8501](http://localhost:8501)
 
 ---
 
