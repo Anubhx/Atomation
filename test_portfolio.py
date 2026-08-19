@@ -2,9 +2,9 @@
 Playwright test suite for anubhavportfolio.vercel.app
 
 Covers:
-  1. Home page — loads correctly, key elements visible (hero text, nav, buttons, tools strip)
-  2. Navigation — clicking "Explore Work" takes you to /case-studies
-  3. Case Studies page — loads correctly, key elements visible
+  1. Home page - loads correctly, key elements visible (hero text, nav, buttons, tools strip)
+  2. Navigation - clicking "Explore Work" takes you to /case-studies
+  3. Case Studies page - loads correctly, key elements visible
   4. Direct navigation to /case-studies (deep link) also works
   5. Basic nav bar links are present on both pages
 

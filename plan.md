@@ -591,11 +591,11 @@ st.chat_message()
 
 Implement special modes.
 
-MODE 1 — ASK
+MODE 1 - ASK
 
 Normal RAG question.
 
-MODE 2 — TEST CASE GENERATOR
+MODE 2 - TEST CASE GENERATOR
 
 Input:
 
@@ -613,7 +613,7 @@ Priority
 Risk
 Automation Candidate
 
-MODE 3 — AUTOMATION GENERATOR
+MODE 3 - AUTOMATION GENERATOR
 
 Input:
 
@@ -628,7 +628,7 @@ Assertions
 Test data requirements
 Potential flaky points
 
-MODE 4 — DEBUG FAILURE
+MODE 4 - DEBUG FAILURE
 
 Input:
 
@@ -642,7 +642,7 @@ How to diagnose
 Fix
 Prevention
 
-MODE 5 — SQL HELPER
+MODE 5 - SQL HELPER
 
 Input:
 
@@ -657,7 +657,7 @@ Caveats
 
 Clearly state that table/column names must match the actual project schema.
 
-MODE 6 — API HELPER
+MODE 6 - API HELPER
 
 Input:
 
@@ -675,7 +675,7 @@ Negative tests
 Security tests
 Automation example
 
-MODE 7 — ERP WORKFLOW
+MODE 7 - ERP WORKFLOW
 
 Input:
 
@@ -692,7 +692,7 @@ Integrations
 UI/API/DB validation
 Risks
 
-MODE 8 — STUDY / QUIZ
+MODE 8 - STUDY / QUIZ
 
 Generate questions from the local KB.
 

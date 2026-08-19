@@ -20,7 +20,7 @@ difficulty: beginner-intermediate
 
 ## 🎯 Overview: The Role of AI in Enterprise QA
 
-Generative AI (ChatGPT, Claude, Gemini, GitHub Copilot) accelerates QA workflows—from drafting test scenarios to debugging complex Playwright traces. However, AI is an **assistant, not an autonomous authority**. AI outputs must always be reviewed, verified, and sanitized.
+Generative AI (ChatGPT, Claude, Gemini, GitHub Copilot) accelerates QA workflows-from drafting test scenarios to debugging complex Playwright traces. However, AI is an **assistant, not an autonomous authority**. AI outputs must always be reviewed, verified, and sanitized.
 
 ---
 

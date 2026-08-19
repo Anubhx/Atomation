@@ -19,7 +19,7 @@ difficulty: intermediate
 
 ## 🎯 Overview: Database Constraints as Quality Defense
 
-Database constraints enforce structural data integrity directly at the storage engine level—preventing corrupted inputs regardless of application bugs.
+Database constraints enforce structural data integrity directly at the storage engine level-preventing corrupted inputs regardless of application bugs.
 
 ---
 

@@ -25,7 +25,7 @@ difficulty: intermediate
 
 ## 🎯 Overview: Patient Safety as the Primary Metric
 
-In Healthcare, EHR (Electronic Health Record) systems, and Medical Device Software (SaMD - Software as a Medical Device), a software defect does not merely cause financial loss—it can directly compromise **Patient Safety**.
+In Healthcare, EHR (Electronic Health Record) systems, and Medical Device Software (SaMD - Software as a Medical Device), a software defect does not merely cause financial loss-it can directly compromise **Patient Safety**.
 
 ```
   ┌─────────────────────────────────────────────────────────────┐
@@ -46,7 +46,7 @@ In Healthcare, EHR (Electronic Health Record) systems, and Medical Device Softwa
 ## 📋 Core Principles of Healthcare Software QA
 
 1. **Patient Safety Centricity**: Software algorithms calculating drug dosages, patient vitals, or diagnostic imaging must undergo rigorous boundary value testing.
-2. **Strict Immutable Audit Trails**: System logs must record every read, write, modification, or deletion of Patient Health Information (PHI)—storing `user_id`, `timestamp`, `ip_address`, and `action`.
+2. **Strict Immutable Audit Trails**: System logs must record every read, write, modification, or deletion of Patient Health Information (PHI)-storing `user_id`, `timestamp`, `ip_address`, and `action`.
 3. **Data Privacy (HIPAA Compliance)**: PHI data must be encrypted at rest (AES-256) and in transit (TLS 1.3), and masked in test environments.
 
 ---

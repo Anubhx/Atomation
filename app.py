@@ -34,7 +34,7 @@ from src.document_loader import load_all_knowledge_documents
 
 # Streamlit Page Config
 st.set_page_config(
-    page_title="QE Copilot — Enterprise QA & ERP Assistant",
+    page_title="QE Copilot - Enterprise QA & ERP Assistant",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -210,7 +210,7 @@ if nav_choice == "🏠 Home":
 # VIEW 2: ASK QE (CHAT INTERFACE)
 # ==============================================================================
 elif nav_choice == "💬 Ask QE":
-    st.title("💬 QE Copilot — Interactive Assistant")
+    st.title("💬 QE Copilot - Interactive Assistant")
     st.caption("Ask questions about Software Testing, ERP Workflows, Playwright, Pytest, SQL, and Test Design.")
 
     # Pre-written Clickable Quick Questions (Local Fast-Path Answers)
@@ -381,7 +381,7 @@ elif nav_choice == "🔍 Global Search":
             if items:
                 st.markdown(f"### {cat} ({len(items)} matches)")
                 for item in items:
-                    with st.expander(f"{item.title} — `{item.path}`"):
+                    with st.expander(f"{item.title} - `{item.path}`"):
                         st.markdown(f"**Match Type:** {item.match_type}")
                         st.markdown(f"> *{item.snippet}*")
                         st.button(f"Open {item.title}", key=f"search_open_{item.path}", on_click=set_nav_target, args=("📚 Knowledge Base", item.path))

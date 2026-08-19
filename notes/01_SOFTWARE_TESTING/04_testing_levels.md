@@ -77,7 +77,7 @@ Software testing is structured in progressive levels. Each level targets a diffe
 
 > [!WARNING]
 > **"Ice Cream Cone" Anti-Pattern**: Writing zero Unit/Integration tests and attempting to cover 100% of application logic via heavy, slow, fragile End-to-End UI tests.
-> **Solution**: Follow the **Test Pyramid**—place the majority of tests at Unit and Integration levels, reserving E2E UI tests for critical user journeys.
+> **Solution**: Follow the **Test Pyramid**-place the majority of tests at Unit and Integration levels, reserving E2E UI tests for critical user journeys.
 
 ---
 

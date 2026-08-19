@@ -20,7 +20,7 @@ difficulty: beginner-intermediate
 
 ## 🎯 Overview: Playwright Architecture
 
-Playwright operates out-of-process via WebSocket connection to browser engines (Chromium, Firefox, WebKit). Unlike Selenium (WebDriver HTTP polling), Playwright communicates directly with Chrome DevTools Protocol (CDP) and browser engines—delivering fast, reliable, auto-waiting execution.
+Playwright operates out-of-process via WebSocket connection to browser engines (Chromium, Firefox, WebKit). Unlike Selenium (WebDriver HTTP polling), Playwright communicates directly with Chrome DevTools Protocol (CDP) and browser engines-delivering fast, reliable, auto-waiting execution.
 
 ```
  [ Pytest Runner ] ──(Python Sync/Async API)──> [ Playwright Driver Node ] ──(WebSocket / CDP)──> [ Chromium / WebKit / Firefox ]

@@ -21,7 +21,7 @@ difficulty: intermediate
 
 ## 🎯 Overview & Purpose
 
-Test design techniques provide mathematical and systematic frameworks to derive optimal test cases—achieving maximum requirement coverage with minimum redundant test execution.
+Test design techniques provide mathematical and systematic frameworks to derive optimal test cases-achieving maximum requirement coverage with minimum redundant test execution.
 
 ---
 

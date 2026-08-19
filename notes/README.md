@@ -27,7 +27,7 @@ Welcome to the **Enterprise Quality Engineering Field Manual**. This knowledge b
 > 🌐 **Live Web Application**: [https://qe-copilot.streamlit.app](https://qe-copilot.streamlit.app)  
 > 💻 **Local Development UI**: [http://localhost:8501](http://localhost:8501)
 
-Unlike high-level generic tutorials, this repository serves as an **operational field manual**—giving you exact workflows, production-ready Playwright/Python code, enterprise SQL queries, business process validation matrices, defect templates, and AI prompt engineering strategies.
+Unlike high-level generic tutorials, this repository serves as an **operational field manual**-giving you exact workflows, production-ready Playwright/Python code, enterprise SQL queries, business process validation matrices, defect templates, and AI prompt engineering strategies.
 
 ---
 

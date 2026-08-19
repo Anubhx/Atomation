@@ -19,7 +19,7 @@ difficulty: intermediate
 
 ## 🎯 Overview: The Paradigm Shift
 
-Traditional Quality Assurance (QA) historically operated as an isolated downstream phase where testers ran manual scripts against completed software builds. **Quality Engineering (QE)** shifts quality upstream—integrating software engineering principles, automated tooling, data analytics, and continuous delivery pipelines into every stage of development.
+Traditional Quality Assurance (QA) historically operated as an isolated downstream phase where testers ran manual scripts against completed software builds. **Quality Engineering (QE)** shifts quality upstream-integrating software engineering principles, automated tooling, data analytics, and continuous delivery pipelines into every stage of development.
 
 ```
 TRADITIONAL QA:  [Dev Writes Code] ──> [Code Freeze] ──> [QA Manual Testing Phase] ──> [Bugs Filed] ──> [Fixes & Delay]

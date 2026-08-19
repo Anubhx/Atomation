@@ -77,7 +77,7 @@ Automated tests are code. Bad automation code creates flakiness, maintenance dra
 - Keep test data isolated and clean up state via API teardowns.
 
 ### 5. Quality Advocacy & Culture
-Quality is not the sole responsibility of the QA team—it is a team commitment.
+Quality is not the sole responsibility of the QA team-it is a team commitment.
 - Challenge ambiguous user stories during Sprint Grooming.
 - Guide developers on writing effective unit tests.
 - Block deployments when critical Quality Gates fail, backed by objective metrics.

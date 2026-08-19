@@ -20,7 +20,7 @@ difficulty: beginner-intermediate
 
 ## 🎯 Overview: The Embedded Quality Engineer
 
-In Agile environments, QA is not an external audit group—QA is an active participant in every Sprint ceremony from Day 1 to Day 10.
+In Agile environments, QA is not an external audit group-QA is an active participant in every Sprint ceremony from Day 1 to Day 10.
 
 ---
 

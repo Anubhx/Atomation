@@ -19,7 +19,7 @@ difficulty: intermediate
 
 ## 🎯 Overview: What is an ERP System?
 
-An **Enterprise Resource Planning (ERP)** system (e.g., SAP S/4HANA, Oracle Cloud ERP, Microsoft Dynamics 365, NetSuite) is an integrated software platform that manages an enterprise's core business processes in real time—including finance, procurement, supply chain, HR, sales, and manufacturing.
+An **Enterprise Resource Planning (ERP)** system (e.g., SAP S/4HANA, Oracle Cloud ERP, Microsoft Dynamics 365, NetSuite) is an integrated software platform that manages an enterprise's core business processes in real time-including finance, procurement, supply chain, HR, sales, and manufacturing.
 
 ```
                                ┌─────────────────────────────────────────┐
