@@ -8,6 +8,7 @@ logger = logging.getLogger("workspace")
 
 DEFAULT_PINS = [
     {"title": "⭐ Playwright Cheat Sheet", "path": "notes/21_CHEAT_SHEETS/cheat-sheet-playwright.md", "type": "doc"},
+    {"title": "🚀 FastAPI & Swagger Guide", "path": "06_API_TESTING/06_fastapi_setup_swagger_file_conversions.md", "type": "doc"},
     {"title": "⭐ ERP Procure-to-Pay (P2P)", "path": "notes/03_ERP_TESTING/03_procure_to_pay_p2p_workflow.md", "type": "doc"},
     {"title": "⭐ RBAC & SOD Testing", "path": "notes/03_ERP_TESTING/08_rbac_security_and_sod_testing.md", "type": "doc"},
     {"title": "⭐ SQL Cheat Sheet", "path": "notes/21_CHEAT_SHEETS/cheat-sheet-sql.md", "type": "doc"},

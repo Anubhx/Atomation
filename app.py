@@ -138,6 +138,7 @@ nav_choice = st.sidebar.radio(
     "Navigation",
     [
         "🏠 Home",
+        "🚀 FastAPI Guide & Assistant",
         "💬 Ask QE",
         "📚 Knowledge Base",
         "💻 Code Browser",
@@ -171,8 +172,8 @@ if nav_choice == "🏠 Home":
 
     # Document & Vector Metrics
     manifest = vector_store.manifest
-    total_docs = manifest.get("total_docs", 89)
-    total_chunks = manifest.get("total_chunks", 552)
+    total_docs = manifest.get("total_docs", 90)
+    total_chunks = manifest.get("total_chunks", 574)
 
     with col1:
         st.metric("KB Documents", f"{total_docs} files")
@@ -185,14 +186,14 @@ if nav_choice == "🏠 Home":
         st.metric("Local Fast Answers", usage_sum.get("local_answers", 0))
 
     st.markdown("---")
-    st.markdown("### 🚀 Quick Access Modes & Features")
+    st.markdown("### 🚀 Featured Guide & Dedicated Copilot")
 
     col_a, col_b, col_c = st.columns(3)
     with col_a:
-        st.info("💬 **Ask QE**\n\nAsk questions about P2P workflows, 3-way matching, Playwright locators, pytest fixtures, and SQL verification.")
-        st.button("Go to Ask QE 💬", key="dash_btn_ask", on_click=set_nav_target, args=("💬 Ask QE",))
+        st.info("🚀 **FastAPI Copilot & Guide**\n\nInteractive FastAPI Field Manual, Setup Commands (`uv` & `pip`), Swagger UI, File Conversions & Pytest suite.")
+        st.button("Launch FastAPI Copilot 🚀", key="dash_btn_fastapi", on_click=set_nav_target, args=("🚀 FastAPI Guide & Assistant",))
     with col_b:
-        st.success("📚 **Knowledge Base Browser**\n\nExplore 89+ structured QA Markdown guides across 26 modules with frontmatter metadata & search.")
+        st.success("📚 **Knowledge Base Browser**\n\nExplore 90+ structured QA Markdown guides across 26 modules with frontmatter metadata & search.")
         st.button("Browse Knowledge Base 📚", key="dash_btn_kb", on_click=set_nav_target, args=("📚 Knowledge Base",))
     with col_c:
         st.warning("💻 **Code Browser**\n\nBrowse test code files and automatically see linked QA documentation and perform AI code reviews.")
@@ -201,36 +202,109 @@ if nav_choice == "🏠 Home":
     st.markdown("---")
     st.markdown("### 📌 Pinned Workspace Shortcuts")
     pins = workspace.get_pins()
-    p_cols = st.columns(min(len(pins), 5))
-    for idx, pin in enumerate(pins[:5]):
+    p_cols = st.columns(min(len(pins), 6))
+    for idx, pin in enumerate(pins[:6]):
         with p_cols[idx]:
             st.button(pin["title"], key=f"home_pin_{idx}", on_click=set_nav_target, args=("📚 Knowledge Base", pin["path"]))
+
+# ==============================================================================
+# VIEW 1.5: FASTAPI DEDICATED GUIDE & ASSISTANT
+# ==============================================================================
+elif nav_choice == "🚀 FastAPI Guide & Assistant":
+    st.title("🚀 FastAPI Architecture, Setup & Interactive Assistant")
+    st.caption("Complete Field Manual, Setup Commands, Swagger UI, File Conversions & Dedicated Q&A Assistant")
+
+    fastapi_doc_rel = "06_API_TESTING/06_fastapi_setup_swagger_file_conversions.md"
+
+    tab_guide, tab_qa, tab_gen = st.tabs([
+        "📖 Complete FastAPI Guide", 
+        "💬 Ask FastAPI Copilot", 
+        "🧪 Code & Test Generator"
+    ])
+
+    with tab_guide:
+        docs = load_all_knowledge_documents()
+        fastapi_docs = [d for d in docs if d.rel_path == fastapi_doc_rel]
+        if fastapi_docs:
+            f_doc = fastapi_docs[0]
+            st.success(f"📄 **{f_doc.title}** — High-Performance Python API Framework")
+            st.markdown(f_doc.content)
+        else:
+            st.error("FastAPI Guide document not found in knowledge base.")
+
+    with tab_qa:
+        st.markdown("### 💬 Ask Questions Focused on FastAPI")
+        st.caption("Type any FastAPI question below (e.g., 'How to convert CSV to JSON?', 'Swagger UI setup', 'uv vs pip commands')")
+        
+        # Sample Quick Questions for FastAPI
+        fq_cols = st.columns(3)
+        with fq_cols[0]:
+            if st.button("⚡ Fast Setup Commands (`uv` & `pip`)", key="fq_setup", use_container_width=True):
+                st.session_state.selected_doc_path = fastapi_doc_rel
+                process_query("What are the setup commands for FastAPI using uv and pip?")
+                st.rerun()
+        with fq_cols[1]:
+            if st.button("⚡ Swagger UI Customization", key="fq_swagger", use_container_width=True):
+                st.session_state.selected_doc_path = fastapi_doc_rel
+                process_query("How do I customize Swagger UI and OpenAPI in FastAPI?")
+                st.rerun()
+        with fq_cols[2]:
+            if st.button("⚡ File Upload & Conversions", key="fq_files", use_container_width=True):
+                st.session_state.selected_doc_path = fastapi_doc_rel
+                process_query("How to handle UploadFile and convert CSV to JSON in FastAPI?")
+                st.rerun()
+
+        st.markdown("---")
+        # Display Chat History
+        for msg in st.session_state.chat_history:
+            with st.chat_message(msg["role"]):
+                st.markdown(msg["content"])
+                if "badge" in msg:
+                    st.caption(f"Source: {msg['badge']}")
+
+        if fast_q := st.chat_input("Ask any FastAPI question (e.g. 'How do I test a FastAPI endpoint in Pytest?')"):
+            st.session_state.selected_doc_path = fastapi_doc_rel
+            process_query(fast_q)
+            st.rerun()
+
+    with tab_gen:
+        st.markdown("### 🧪 FastAPI Code & Pytest Test Generator")
+        gen_mode = st.radio("Select Output Format", ["FastAPI Router Endpoint & Pydantic Schema", "Pytest TestClient Integration Test Suite"])
+        prompt_in = st.text_area("Describe the API Requirement / Conversion Endpoint:", height=120, value="Create a FastAPI POST endpoint /api/v1/convert/pdf-to-text that accepts a PDF UploadFile and extracts text into JSON.")
+        
+        if st.button("Generate FastAPI Code"):
+            with st.spinner("Generating production code..."):
+                if "Pytest" in gen_mode:
+                    res = mode_handler.execute_api_helper(f"Generate Pytest TestClient code for FastAPI endpoint: {prompt_in}", top_k=st.session_state.top_k)
+                else:
+                    res = mode_handler.execute_api_helper(f"Generate FastAPI router endpoint and Pydantic schema for: {prompt_in}", top_k=st.session_state.top_k)
+                st.markdown(res["answer"])
 
 # ==============================================================================
 # VIEW 2: ASK QE (CHAT INTERFACE)
 # ==============================================================================
 elif nav_choice == "💬 Ask QE":
     st.title("💬 QE Copilot - Interactive Assistant")
-    st.caption("Ask questions about Software Testing, ERP Workflows, Playwright, Pytest, SQL, and Test Design.")
+    st.caption("Ask questions about Software Testing, ERP Workflows, Playwright, Pytest, SQL, FastAPI, and Test Design.")
 
     # Pre-written Clickable Quick Questions (Local Fast-Path Answers)
     st.markdown("##### 💡 Quick Sample Questions (Local Fast-Path Answers):")
     sample_q_cols = st.columns(3)
     
     with sample_q_cols[0]:
+        if st.button("🚀 FastAPI Setup & Swagger UI", key="sample_q_fastapi", use_container_width=True):
+            set_nav_target("📚 Knowledge Base", "06_API_TESTING/06_fastapi_setup_swagger_file_conversions.md")
+            st.rerun()
         if st.button("⚡ ERP 3-Way Match", key="sample_q_3way", use_container_width=True):
             process_query("Explain 3-way match")
             st.rerun()
+
+    with sample_q_cols[1]:
         if st.button("⚡ Playwright locators", key="sample_q_locators", use_container_width=True):
             process_query("What is Playwright get_by_role syntax?")
             st.rerun()
-
-    with sample_q_cols[1]:
         if st.button("⚡ Playwright Strict Mode Fix", key="sample_q_strict", use_container_width=True):
             process_query("How to fix Playwright strict mode error?")
-            st.rerun()
-        if st.button("⚡ HTTP 401 / 403 / 404 Codes", key="sample_q_http", use_container_width=True):
-            process_query("What is HTTP 401 403 404?")
             st.rerun()
 
     with sample_q_cols[2]:
