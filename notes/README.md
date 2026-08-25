@@ -117,6 +117,7 @@ Below is the complete module index. Click any link to jump directly into the ded
 * [01. CI/CD Foundations for QA (Git, GitHub Actions, Jenkins)](12_CI_CD/01_ci_cd_concepts_git_github_actions_jenkins.md)
 * [02. Playwright + Pytest Pipeline Execution & Reporting](12_CI_CD/02_playwright_pytest_ci_pipeline_setup.md)
 
+
 ### 13. Security Testing for QA
 * [01. Practical QA Security Testing (RBAC, IDOR, Sessions, Inputs)](13_SECURITY/01_qa_security_testing_rbac_idor_session_inputs.md)
 
