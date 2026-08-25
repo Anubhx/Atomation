@@ -2,6 +2,12 @@ import os
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+except ImportError:
+    pass
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Knowledge Base Directories

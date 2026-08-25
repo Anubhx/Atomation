@@ -580,4 +580,9 @@ elif nav_choice == "⚙️ Settings":
     st.session_state.temperature = st.slider("Model Temperature", min_value=0.0, max_value=1.0, value=st.session_state.temperature, step=0.05)
     st.session_state.local_only = st.checkbox("Enable Local-Only Mode (Disable All Gemini API Calls)", value=st.session_state.local_only)
 
+    st.markdown("---")
+    if st.button("🧹 Clear Answer Cache"):
+        cache.clear()
+        st.success("Answer cache cleared successfully!")
+
     st.success("Settings updated for current session!")

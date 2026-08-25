@@ -43,6 +43,13 @@ class AnswerCache:
 
         entry = self.cache[norm_q]
 
+        # Invalidate error responses from cache
+        answer_text = entry.get("answer", "")
+        if "Gemini API Error" in answer_text or "Request failed" in answer_text or answer_text.startswith("❌"):
+            del self.cache[norm_q]
+            self._save_cache()
+            return None
+
         # Check KB version
         if entry.get("kb_version") != current_kb_version:
             return None
@@ -61,6 +68,10 @@ class AnswerCache:
         source_type: str = "LOCAL",
         kb_version: str = "v1"
     ) -> None:
+        # Never cache error responses
+        if "Gemini API Error" in answer or "Request failed" in answer or answer.startswith("❌"):
+            return
+
         norm_q = self._normalize_query(query)
         self.cache[norm_q] = {
             "query": query,

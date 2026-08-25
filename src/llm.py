@@ -49,6 +49,9 @@ class GeminiClient:
 
         retries = 0
         last_error = ""
+        candidate_models = [self.model_name, "gemini-2.5-flash", "gemini-1.5-flash"]
+        # Remove duplicates while preserving order
+        candidate_models = list(dict.fromkeys(candidate_models))
 
         while retries < MAX_RETRIES:
             slot = self.key_pool.get_available_key()
@@ -60,45 +63,53 @@ class GeminiClient:
                     "error": "Key Pool Cooldown"
                 }
 
-            try:
-                from google import genai
-                from google.genai import types
+            from google import genai
+            from google.genai import types
 
-                client = genai.Client(api_key=slot.key_str)
-                config = types.GenerateContentConfig(
-                    temperature=temperature,
-                    system_instruction=system_instruction
-                )
+            client = genai.Client(api_key=slot.key_str)
+            config = types.GenerateContentConfig(
+                temperature=temperature,
+                system_instruction=system_instruction
+            )
 
-                response = client.models.generate_content(
-                    model=self.model_name,
-                    contents=prompt,
-                    config=config
-                )
+            for target_model in candidate_models:
+                try:
+                    response = client.models.generate_content(
+                        model=target_model,
+                        contents=prompt,
+                        config=config
+                    )
 
-                if hasattr(response, "text") and response.text:
-                    self.key_pool.mark_healthy(slot.slot_id)
-                    return {
-                        "text": response.text,
-                        "success": True,
-                        "slot_name": slot.get_masked_name(),
-                        "error": None
-                    }
-                else:
-                    last_error = "Empty response from Gemini API"
-                    self.key_pool.mark_failed(slot.slot_id)
+                    if hasattr(response, "text") and response.text:
+                        self.key_pool.mark_healthy(slot.slot_id)
+                        return {
+                            "text": response.text,
+                            "success": True,
+                            "slot_name": slot.get_masked_name(),
+                            "error": None
+                        }
+                    else:
+                        last_error = "Empty response from Gemini API"
+                        self.key_pool.mark_failed(slot.slot_id)
 
-            except Exception as e:
-                err_msg = str(e)
-                last_error = err_msg
-                logger.warning(f"Gemini API call failed on {slot.get_masked_name()}: {err_msg}")
+                except Exception as e:
+                    err_msg = str(e)
+                    last_error = err_msg
+                    logger.warning(f"Gemini API call failed on model '{target_model}' ({slot.get_masked_name()}): {err_msg}")
 
-                if "429" in err_msg or "RESOURCE_EXHAUSTED" in err_msg or "quota" in err_msg.lower():
-                    self.key_pool.mark_rate_limited(slot.slot_id)
-                elif "401" in err_msg or "403" in err_msg or "invalid" in err_msg.lower():
-                    self.key_pool.disable_slot(slot.slot_id)
-                else:
-                    self.key_pool.mark_failed(slot.slot_id)
+                    if "404" in err_msg or "NOT_FOUND" in err_msg or "not found" in err_msg.lower() or "no longer available" in err_msg.lower():
+                        # Try next fallback model in candidate_models list
+                        continue
+
+                    if "429" in err_msg or "RESOURCE_EXHAUSTED" in err_msg or "quota" in err_msg.lower():
+                        self.key_pool.mark_rate_limited(slot.slot_id)
+                        break
+                    elif "401" in err_msg or "403" in err_msg or "invalid" in err_msg.lower():
+                        self.key_pool.disable_slot(slot.slot_id)
+                        break
+                    else:
+                        self.key_pool.mark_failed(slot.slot_id)
+                        break
 
             retries += 1
             time.sleep(1.0 * retries)
